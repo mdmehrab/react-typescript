@@ -2,23 +2,25 @@ import { useState } from "react";
 import { Button } from "antd";
 import { footerLinks } from "../data";
 import PopModal from "./PopModal";
+import { useTranslation } from "react-i18next";
+
+const customStyle = {
+  color: "#fff",
+  borderColor: "#fff",
+  background: "transparent",
+  cursor: "pointer",
+  transition: "all 0.3s ease-in-out",
+  "&:hover": {
+    backgroundColor: "#555",
+  },
+};
 
 const Footer = () => {
+  const { i18n } = useTranslation(); 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
     setIsModalOpen(true);
-  };
-
-  const customStyle = {
-    color: "#fff",
-    borderColor: "#fff",
-    background: "transparent",
-    cursor: "pointer",
-    transition: "all 0.3s ease-in-out",
-    "&:hover": {
-      backgroundColor: "#555",
-    },
   };
 
   return (
@@ -29,7 +31,9 @@ const Footer = () => {
             <ul>
               {list?.map((item) => (
                 <li key={item.id} className="hover:underline my-3">
-                  <a href={item.url}>{item.content}</a>
+                  <a href={item.url}>
+                    {item.content[i18n.language as keyof typeof item.content]}
+                  </a>
                 </li>
               ))}
             </ul>
@@ -40,9 +44,7 @@ const Footer = () => {
           <Button
             className="bg-transparent border border-white text-white rounded-none langModal"
             onClick={showModal}
-            style={{
-              ...customStyle,
-            }}
+            style={customStyle}
           >
             Language
           </Button>
