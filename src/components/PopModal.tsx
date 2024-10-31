@@ -35,6 +35,10 @@ const PopModal = ({ isModalOpen, setIsModalOpen }: PopModalProps) => {
       <p className="hover:text-gray-500 my-3 cursor-pointer" onClick={() => handleLanguageChange('en')}>
         English
       </p>
+      <p className="hover:text-gray-500 my-3 cursor-pointer" onClick={() => handleLanguageChange('cn')}>
+        China
+      </p>
+
     </Modal>
   );
 };

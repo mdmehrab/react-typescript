@@ -15,6 +15,12 @@ i18n
           // Your Bangla translations
         },
       },
+
+      cn: {
+        translation: {
+          // Your Bangla translations
+        },
+      },
     },
     lng: 'en', // Default language
     fallbackLng: 'en', // Fallback language
