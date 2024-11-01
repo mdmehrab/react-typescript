@@ -4,6 +4,9 @@ import { footerLinks } from "../data";
 import PopModal from "./PopModal";
 import { useTranslation } from "react-i18next";
 
+import { GrLanguage } from "react-icons/gr";
+
+
 const customStyle = {
   color: "#fff",
   borderColor: "#fff",
@@ -18,9 +21,15 @@ const customStyle = {
 const Footer = () => {
   const { i18n } = useTranslation(); 
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [language, setLanguage] = useState("Select a language");
 
   const showModal = () => {
     setIsModalOpen(true);
+  };
+
+  const handleLanguageChange = (lang: string) => {
+    i18n.changeLanguage(lang);
+    setLanguage(lang);
   };
 
   return (
@@ -46,12 +55,17 @@ const Footer = () => {
             onClick={showModal}
             style={customStyle}
           >
-            Language
+            <span><GrLanguage/></span>
+            {language}
           </Button>
         </div>
       </div>
 
-      <PopModal isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <PopModal 
+        isModalOpen={isModalOpen} 
+        setIsModalOpen={setIsModalOpen} 
+        handleLanguageChange={handleLanguageChange} 
+      />
     </>
   );
 };

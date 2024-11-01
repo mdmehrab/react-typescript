@@ -1,9 +1,9 @@
 export interface FooterLink {
     id: number;
     content: {
-      en: string;
-      bn: string;
-      cn: string
+      English: string;
+      Bangla: string;
+      China: string
     };
     url: string;
   }

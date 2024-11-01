@@ -5,25 +5,25 @@ i18n
   .use(initReactI18next) // Passes i18n down to react-i18next
   .init({
     resources: {
-      en: {
+      English: {
         translation: {
           // Your English translations
         },
       },
-      bn: {
+      Bangla: {
         translation: {
           // Your Bangla translations
         },
       },
 
-      cn: {
+      China: {
         translation: {
           // Your Bangla translations
         },
       },
     },
-    lng: 'en', // Default language
-    fallbackLng: 'en', // Fallback language
+    lng: 'English', // Default language
+    fallbackLng: 'English', // Fallback language
     interpolation: {
       escapeValue: false, // React already does escaping
     },
