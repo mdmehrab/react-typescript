@@ -21,3 +21,4 @@ export const footerLinks = [
         { id: 5, content: { English: 'Accessibility statement', Bangla: 'অ্যাক্সেসযোগ্যতার বিবৃতি', China: '可及性声明' }, url: '/' },
     ]
 ];
+
