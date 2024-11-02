@@ -2,8 +2,7 @@ import { MdOutlineShoppingCart } from "react-icons/md";
 import { GrLanguage } from "react-icons/gr";
 import { CiSearch } from "react-icons/ci";
 import CustomizedMenus from "./CustomizedMenus";
-import { Button } from "@mui/material";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
+
 import { useState } from "react";
 
 const Toolbar = () => {
@@ -31,7 +30,7 @@ const Toolbar = () => {
             aria-expanded={open ? "true" : undefined}
             onClick={handleClick}
           >
-            Categories
+            <span className="cursor-pointer"> Categories</span>
           </div>
           <div className="w-[80%] flex items-center gap-2 relative">
             <span className="absolute right-3">

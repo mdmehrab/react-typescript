@@ -1,11 +1,11 @@
 import { styled, alpha } from "@mui/material/styles";
 import Menu, { MenuProps } from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
-import EditIcon from "@mui/icons-material/Edit";
-import Divider from "@mui/material/Divider";
-import ArchiveIcon from "@mui/icons-material/Archive";
-import FileCopyIcon from "@mui/icons-material/FileCopy";
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
+
+
+
+
+
 
 const StyledMenu = styled((props: MenuProps) => (
   <Menu
@@ -63,31 +63,16 @@ const CustomizedMenus: React.FC<CustomizedMenusProps> = ({
 }) => {
   return (
     <StyledMenu
-      id="demo-customized-menu"
-      MenuListProps={{
-        "aria-labelledby": "demo-customized-button",
-      }}
+    
       anchorEl={anchorEl}
       open={open}
       onClose={handleClose}
     >
       <MenuItem onClick={handleClose} disableRipple>
-        <EditIcon />
-        Edit
+       Devw
+      
       </MenuItem>
-      <MenuItem onClick={handleClose} disableRipple>
-        <FileCopyIcon />
-        Duplicate
-      </MenuItem>
-      <Divider sx={{ my: 0.5 }} />
-      <MenuItem onClick={handleClose} disableRipple>
-        <ArchiveIcon />
-        Archive
-      </MenuItem>
-      <MenuItem onClick={handleClose} disableRipple>
-        <MoreHorizIcon />
-        More
-      </MenuItem>
+     
     </StyledMenu>
   );
 };
