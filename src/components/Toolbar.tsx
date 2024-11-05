@@ -46,6 +46,7 @@ function NavListMenu(): JSX.Element {
       handler={(isOpen) => setIsMenuOpen(isOpen)}
       placement="bottom"
       allowHover
+    
     >
       <MenuHandler>
         <Typography
