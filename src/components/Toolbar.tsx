@@ -1,7 +1,7 @@
 import { MdOutlineShoppingCart } from "react-icons/md";
 import { GrLanguage } from "react-icons/gr";
 import { CiSearch } from "react-icons/ci";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Menu,
   MenuHandler,
@@ -27,6 +27,8 @@ function NavListMenu(): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [openNestedMenu, setOpenNestedMenu] = useState<boolean>(false);
 
+
+
   const renderItems = nestedMenuItems.map(({ title }, key) => (
     <MenuItem
       key={key}
@@ -39,6 +41,9 @@ function NavListMenu(): JSX.Element {
       {title}
     </MenuItem>
   ));
+
+
+
 
   return (
     <Menu
@@ -121,8 +126,29 @@ function NavListMenu(): JSX.Element {
 }
 
 const Toolbar = (): JSX.Element => {
+  const [showNavbar, setShowNavbar] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      // Hide navbar when scroll position is 500px or more
+      if (window.scrollY >= 300) {
+        setShowNavbar(true);
+      } else{
+        setShowNavbar(false)
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+
+    // Cleanup the event listener on unmount
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, []);
+
   return (
-    <div className="flex flex-col">
+    <>
+    <div className={`bg-white ${showNavbar && ' fixed top-0 w-screen z-10 px-4'}`}>
       <div className="flex justify-between items-center p-3">
         <div className="flex items-center gap-3 w-[55%]">
           <div className="w-[10%]">
@@ -157,6 +183,8 @@ const Toolbar = (): JSX.Element => {
         </div>
       </div>
     </div>
+    
+    </>
   );
 };
 

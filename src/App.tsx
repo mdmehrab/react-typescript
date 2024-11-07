@@ -5,7 +5,7 @@ import Home from "./pages/Home";
 function App() {
   return (
     <>
-      <div className="bg-white">
+      <div className="w-full">
       <Toolbar />
       </div>
       <Home /> 
