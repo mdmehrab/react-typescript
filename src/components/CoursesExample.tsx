@@ -50,7 +50,10 @@ const CoursesExample = () => {
                     key={index}
                     className="p-4 bg-gray-100 rounded-lg shadow-md"
                   >
-                    <h3 className="text-lg font-semibold">{item.text}</h3>
+                    <div className="text-lg font-semibold">
+                      <p>{item.text}</p>
+                      <p>{item.user}</p>
+                    </div>
                   </div>
                 ))}
               </div>
@@ -59,7 +62,7 @@ const CoursesExample = () => {
       </div>
 
       {/* cards */}
-       <div className="py-4">
+      <div className="py-4">
         {skillsList?.map(
           (skill) =>
             activeTab === skill.title && (
@@ -72,7 +75,9 @@ const CoursesExample = () => {
                     key={index}
                     className="p-4 bg-gray-100 rounded-lg shadow-md"
                   >
-                    <h3 className="text-lg font-semibold">{item.currentPrice}</h3>
+                    <h3 className="text-lg font-semibold">
+                      {item.currentPrice}
+                    </h3>
                   </div>
                 ))}
               </div>
