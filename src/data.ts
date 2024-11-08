@@ -153,7 +153,7 @@ export const skillsList = [
         mostSell: "Bestseller",
       },
       {
-        id: 1,
+        id: 2,
         imgSrc: "",
         title: "",
         subTitle: "",
@@ -164,7 +164,7 @@ export const skillsList = [
         mostSell: "Bestseller",
       },
       {
-        id: 1,
+        id: 3,
         imgSrc: "",
         title: "",
         subTitle: "",
@@ -175,7 +175,7 @@ export const skillsList = [
         mostSell: "Bestseller",
       },
       {
-        id: 1,
+        id: 4,
         imgSrc: "",
         title: "",
         subTitle: "",
@@ -185,17 +185,7 @@ export const skillsList = [
         beforePrice: "34",
         mostSell: "Bestseller",
       },
-      {
-        id: 1,
-        imgSrc: "",
-        title: "",
-        subTitle: "",
-        rating: "4",
-        totalRating: "3453",
-        currentPrice: "43",
-        beforePrice: "34",
-        mostSell: "Bestseller",
-      },
+      
     ],
   },
 

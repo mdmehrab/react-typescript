@@ -84,55 +84,48 @@ const CoursesExample = () => {
                 key={skill.title}
                 className="flex items-center justify-between"
               >
+                <div className="grid grid-cols-4 gap-4">
                 {skill.cardItems?.map((item, index) => (
-                  <div
-                    key={index}
-                    className="p-4 bg-gray-100 rounded-lg shadow-md"
-                  >
-                    <h3 className="text-lg font-semibold">
-                      {item.currentPrice}
-                    </h3>
-                  </div>
+                   <div className="col-span-1 border border-gray-400 rounded-lg">
+                     <div>
+                       <img className="w-full rounded-t-lg"  
+                         src="https://media.istockphoto.com/id/1290492381/photo/3d-code-programming-for-website-editors-view.jpg?s=1024x1024&w=is&k=20&c=9M-O33J-9jLuAVd096VRd5So8YGYvj6iJH_cLjjmlhk="
+                         alt="will add image"
+                       />
+                     </div>
+                     <div className="py-3 px-5">
+                       <div className="font-bold">
+                         <p>The Complete 2024 Web</p>
+                         <p> Devlopment Bootcamp</p>
+                       </div>
+                       <h4 className="text-sm text-gray-600 mt-2">Dr.Angela Yu Developer and lead...</h4>
+                       <div className="flex items-center text-center space-x-2 mt-2">
+                         <p className="text-sm font-bold">4.7</p>
+                         <div className="flex items-center text-sm space-x-1">
+                           <IoIosStarOutline />
+                           <IoIosStarOutline />
+                           <IoIosStarOutline />
+                           <IoIosStarOutline />
+                           <IoIosStarOutline />
+                         </div>
+                         <p className="text-[13px] text-gray-700">(100000)</p>
+                       </div>
+           
+                       <div className="flex gap-3 mt-2">
+                         <p className="text-[16px] font-bold">$12.99</p>
+                         <p className="text-sm text-gray-700">$69.99</p>
+                       </div>
+                       <button className="text-black text-xs  font-semibold bg-amber-200 p-1 mt-1">bestseller</button>
+                     </div>
+                   </div>
                 ))}
+                </div>
               </div>
             )
         )}
       </div>
 
-      <div className="grid grid-cols-4">
-        <div className="col-span-1 border border-gray-400 rounded-lg">
-          <div>
-            <img className="w-full rounded-t-lg"  
-              src="https://media.istockphoto.com/id/1290492381/photo/3d-code-programming-for-website-editors-view.jpg?s=1024x1024&w=is&k=20&c=9M-O33J-9jLuAVd096VRd5So8YGYvj6iJH_cLjjmlhk="
-              alt="will add image"
-            />
-          </div>
-          <div className="py-3 px-5">
-            <div className="font-bold">
-              <p>The Complete 2024 Web</p>
-              <p> Devlopment Bootcamp</p>
-            </div>
-            <h4 className="text-sm text-gray-600 mt-2">Dr.Angela Yu Developer and lead...</h4>
-            <div className="flex items-center text-center space-x-2 mt-2">
-              <p className="text-sm font-bold">4.7</p>
-              <div className="flex items-center text-sm space-x-1">
-                <IoIosStarOutline />
-                <IoIosStarOutline />
-                <IoIosStarOutline />
-                <IoIosStarOutline />
-                <IoIosStarOutline />
-              </div>
-              <p className="text-[13px] text-gray-700">(100000)</p>
-            </div>
-
-            <div className="flex gap-3 mt-2">
-              <p className="text-[16px] font-bold">$12.99</p>
-              <p className="text-sm text-gray-700">$69.99</p>
-            </div>
-            <button className="text-black text-xs  font-semibold bg-amber-200 p-1 mt-1">bestseller</button>
-          </div>
-        </div>
-      </div>
+     
     </div>
   );
 };
