@@ -132,13 +132,13 @@ export const skillsList = [
     title: "Web Development",
     items: [
       { id: 1, text: "Web Development", user: "13.3M+Learners" },
-      { id: 2, text: "", user: "13.3M+Learners" },
-      { id: 3, text: "", user: "13.3M+Learners" },
-      { id: 4, text: "", user: "" },
-      { id: 5, text: "", user: "" },
-      { id: 6, text: "", user: "" },
-      { id: 7, text: "", user: "" },
-      { id: 8, text: "", user: "" },
+      { id: 2, text: "JavaScript", user: "17.7  M+Learners" },
+      { id: 3, text: "React JS", user: "7M+Learners" },
+      { id: 4, text: "Angular", user: "4M+Learners" },
+      { id: 5, text: "Java", user: "15.5M+Learners" },
+      { id: 6, text: "Android Development", user: "8M+Learners" },
+      { id: 7, text: "IOS Development", user: "4M+Learners" },
+      { id: 8, text: "CSS", user: "9M+Learners" },
     ],
     cardItems: [
       {
