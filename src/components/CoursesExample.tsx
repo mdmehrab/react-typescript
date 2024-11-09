@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { skillsList } from "../data";
-import { IoIosStarOutline } from "react-icons/io";
 
 const CoursesExample = () => {
   const [activeTab, setActiveTab] = useState("Web Development");
@@ -85,47 +84,67 @@ const CoursesExample = () => {
                 className="flex items-center justify-between"
               >
                 <div className="grid grid-cols-4 gap-4">
-                {skill.cardItems?.map((item, index) => (
-                   <div className="col-span-1 border border-gray-400 rounded-lg">
-                     <div>
-                       <img className="w-full rounded-t-lg"  
-                         src="https://media.istockphoto.com/id/1290492381/photo/3d-code-programming-for-website-editors-view.jpg?s=1024x1024&w=is&k=20&c=9M-O33J-9jLuAVd096VRd5So8YGYvj6iJH_cLjjmlhk="
-                         alt="will add image"
-                       />
-                     </div>
-                     <div className="py-3 px-5">
-                       <div className="font-bold">
-                         <p>The Complete 2024 Web</p>
-                         <p> Devlopment Bootcamp</p>
-                       </div>
-                       <h4 className="text-sm text-gray-600 mt-2">Dr.Angela Yu Developer and lead...</h4>
-                       <div className="flex items-center text-center space-x-2 mt-2">
-                         <p className="text-sm font-bold">4.7</p>
-                         <div className="flex items-center text-sm space-x-1">
-                           <IoIosStarOutline />
-                           <IoIosStarOutline />
-                           <IoIosStarOutline />
-                           <IoIosStarOutline />
-                           <IoIosStarOutline />
-                         </div>
-                         <p className="text-[13px] text-gray-700">(100000)</p>
-                       </div>
-           
-                       <div className="flex gap-3 mt-2">
-                         <p className="text-[16px] font-bold">$12.99</p>
-                         <p className="text-sm text-gray-700">$69.99</p>
-                       </div>
-                       <button className="text-black text-xs  font-semibold bg-amber-200 p-1 mt-1">bestseller</button>
-                     </div>
-                   </div>
-                ))}
+                  {skill.cardItems?.map((item, index) => (
+                    <div
+                      className="col-span-1 border border-gray-400 rounded-lg"
+                      key={index}
+                    >
+                      <div>
+                        <img
+                          className="w-full rounded-t-lg h-40"
+                          src={item.imgSrc}
+                          alt="will add image"
+                        />
+                      </div>
+                      <div className="py-3 px-5">
+                        <div className="font-bold">
+                          <p>{item.title}</p>
+                          <p> {item.subTitle}</p>
+                        </div>
+                        <h4 className="text-sm text-gray-600 mt-2">
+                          {"author" in item && (
+                            <p className="text-gray-600">
+                              Author: {item.author}
+                            </p>
+                          )}
+                        </h4>
+                        <div className="flex items-center text-center space-x-2 mt-2">
+                          <p className="text-sm font-bold">4.7</p>
+                          <div className="flex items-center text-sm space-x-1">
+                            {"ratingIcons" in item &&
+                              item.ratingIcons.map((iconItem) => {
+                                const IconComponent = iconItem.icon;
+                                return <IconComponent key={iconItem.id} />;
+                              })}
+                          </div>
+                          {"ratingCounter" in item && (
+                            <p className="text-gray-600">
+                              {item.ratingCounter}
+                            </p>
+                          )}
+                        </div>
+
+                        <div className="flex gap-3 mt-2">
+                          <p className="text-[16px] font-bold">
+                            {item.currentPrice}
+                          </p>
+                          <p className="text-sm text-gray-700">
+                            {item.beforePrice}
+                          </p>
+                        </div>
+                        {"mostSell" in item && (
+                          <button className="text-black text-xs  font-semibold bg-amber-200 p-1 mt-1">
+                            {item.mostSell}
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             )
         )}
       </div>
-
-     
     </div>
   );
 };
