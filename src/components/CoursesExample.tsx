@@ -1,152 +1,96 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { skillsList } from "../data";
 
-const CoursesExample = () => {
-  const [activeTab, setActiveTab] = useState("Web Development");
-  const [activeItem, setActiveItem] = useState(0);
+function CoursesExample() {
+  const [selectedSkills, setSelectedSkills] = useState<any[]>([]);
+  const [activeTab, setActiveTab] = useState<number | null>(null);
+  const [filteredItems, setFilteredItems] = useState<any[]>([]);
+
+  const handleTabClick = (id: number) => {
+    setActiveTab(id);
+    const selectedSkill = skillsList.find((item) => item.id === id);
+    setFilteredItems(selectedSkill?.items || []);
+    handleBtn(id);
+  };
+
+  const handleBtn = (id: number) => {
+    const selectedSkill = skillsList.find((item) => item.id === id);
+    if (selectedSkill) {
+      setSelectedSkills(selectedSkill.cardItems || []);
+    }
+  };
+
+  useEffect(() => {
+    const initialSkill = skillsList.find((item) =>
+      item.items?.some((ele) => ele.text === "Web Development")
+    );
+    if (initialSkill) {
+      setActiveTab(initialSkill.id);
+      setFilteredItems(initialSkill.items || []);
+      setSelectedSkills(initialSkill.cardItems || []);
+    }
+  }, []);
 
   return (
-    <div className="px-7 bg-white py-5">
-      <h2 className="text-3xl font-bold py-3">
-        All the skills you need in one place
-      </h2>
-      <p className="py-3 text-gray-700">
-        From critical skills to technical topics, Udemy supports your
-        professional development.
-      </p>
-      <div className="border-b border-gray-400">
-        <ul
-          className="flex flex-wrap text-base font-bold text-center text-gray-700"
-          role="tablist"
-        >
-          {skillsList?.map((skill) => (
-            <li key={skill.title} role="presentation">
-              <button
-                className={`inline-block p-2 border-b-2  ${
-                  activeTab === skill.title
-                    ? "border-black"
-                    : "border-transparent"
-                }`}
-                type="button"
-                onClick={() => setActiveTab(skill.title)}
-              >
-                {skill.title}
-              </button>
-            </li>
-          ))}
-        </ul>
+    <>
+      {/* Tabs Section */}
+      <div className="tabs flex space-x-4 border-b mb-4">
+        {skillsList.map((item) => (
+          <button
+            key={item.id}
+            className={`px-4 py-2 ${
+              activeTab === item.id
+                ? "border-b-2 border-blue-500 text-blue-500"
+                : "text-gray-500"
+            }`}
+            onClick={() => handleTabClick(item.id)}
+          >
+            {item.title}
+          </button>
+        ))}
       </div>
 
-      {/* Display items under the active tab */}
-      <div className="py-4">
-        {skillsList?.map(
-          (skill) =>
-            activeTab === skill.title && (
-              <div
-                key={skill.title}
-                className="flex items-center justify-between"
-              >
-                {skill.items?.map((item, index) => (
-                  <button
-                    key={index}
-                    className={`p-4 rounded-full cursor-pointer shadow ${
-                      activeItem == index
-                        ? "bg-gray-800 text-white"
-                        : "bg-gray-200"
-                    }`}
-                    type="button"
-                    onClick={() => setActiveItem(index)}
-                  >
-                    <h3 className="text-sm font-semibold">{item.text}</h3>
-                    {"user" in item && (
-                      <p
-                        className={`text-xs ${
-                          activeItem === index ? "text-white" : "text-gray-500"
-                        }`}
-                      >
-                        {item.user}
-                      </p>
-                    )}
-                  </button>
-                ))}
+      {/* Buttons Section */}
+      <div>
+        {filteredItems.map((ele) => (
+          <button onClick={() => handleBtn(ele.id)} key={ele.id}>
+            <span className="mx-3">{ele.text}</span>
+          </button>
+        ))}
+      </div>
+
+      {/* Cards Section */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
+        {selectedSkills.map((cardItem) => (
+          <div key={cardItem.id} className="card p-4 border rounded-lg shadow">
+            <img
+              src={cardItem.imgSrc}
+              alt={cardItem.title}
+              className="w-full h-40 object-cover rounded"
+            />
+            <h3 className="text-lg font-bold mt-2">{cardItem.title}</h3>
+            <p className="text-gray-500">{cardItem.subTitle}</p>
+            <p className="text-sm text-gray-600">{cardItem.author}</p>
+            <div className="flex items-center">
+              <div>{cardItem.rating}</div>
+              <div className="ml-2">{cardItem.ratingCounter}</div>
+            </div>
+            <div className="text-lg font-semibold">
+              {cardItem.currentPrice}{" "}
+              <span className="line-through text-gray-500">
+                {cardItem.beforePrice}
+              </span>
+            </div>
+            {cardItem.mostSell && (
+              <div className="text-green-600 font-bold">
+                {cardItem.mostSell}
               </div>
-            )
-        )}
+            )}
+          </div>
+        ))}
       </div>
-
-      {/* cards */}
-      <div className="py-4">
-        {skillsList?.map(
-          (skill) =>
-            activeTab === skill.title && (
-              <div
-                key={skill.title}
-                className="flex items-center justify-between"
-              >
-                <div className="grid grid-cols-4 gap-4">
-                  {skill.cardItems?.map((item, index) => (
-                    <div
-                      className="col-span-1 border border-gray-400 rounded-lg"
-                      key={index}
-                    >
-                      <div>
-                        <img
-                          className="w-full rounded-t-lg h-40"
-                          src={item.imgSrc}
-                          alt="will add image"
-                        />
-                      </div>
-                      <div className="py-3 px-5">
-                        <div className="font-bold">
-                          <p>{item.title}</p>
-                          <p> {item.subTitle}</p>
-                        </div>
-                        <h4 className="text-sm text-gray-600 mt-2">
-                          {"author" in item && (
-                            <p className="text-gray-600">
-                              Author: {item.author}
-                            </p>
-                          )}
-                        </h4>
-                        <div className="flex items-center text-center space-x-2 mt-2">
-                          <p className="text-sm font-bold">4.7</p>
-                          <div className="flex items-center text-sm space-x-1">
-                            {"ratingIcons" in item &&
-                              item.ratingIcons.map((iconItem) => {
-                                const IconComponent = iconItem.icon;
-                                return <IconComponent key={iconItem.id} />;
-                              })}
-                          </div>
-                          {"ratingCounter" in item && (
-                            <p className="text-gray-600">
-                              {item.ratingCounter}
-                            </p>
-                          )}
-                        </div>
-
-                        <div className="flex gap-3 mt-2">
-                          <p className="text-[16px] font-bold">
-                            {item.currentPrice}
-                          </p>
-                          <p className="text-sm text-gray-700">
-                            {item.beforePrice}
-                          </p>
-                        </div>
-                        {"mostSell" in item && (
-                          <button className="text-black text-xs  font-semibold bg-amber-200 p-1 mt-1">
-                            {item.mostSell}
-                          </button>
-                        )}
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )
-        )}
-      </div>
-    </div>
+    </>
   );
-};
+}
 
 export default CoursesExample;
