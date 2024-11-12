@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { skillsList } from "../data";
+import { Link } from "react-router-dom";
 
 function CoursesExample() {
   const [selectedSkills, setSelectedSkills] = useState<any[]>([]);
@@ -62,7 +63,7 @@ function CoursesExample() {
       {/* Cards Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
         {selectedSkills.map((cardItem) => (
-          <div key={cardItem.id} className="card p-4 border rounded-lg shadow">
+          <Link to={`/courses/${cardItem.id}`} key={cardItem.id} className="card p-4 border rounded-lg shadow">
             <img
               src={cardItem.imgSrc}
               alt={cardItem.title}
@@ -86,7 +87,7 @@ function CoursesExample() {
                 {cardItem.mostSell}
               </div>
             )}
-          </div>
+          </Link>
         ))}
       </div>
     </>

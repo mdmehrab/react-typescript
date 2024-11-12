@@ -228,8 +228,8 @@ export const skillsList = [
     title: "IT Certifications",
     items: [
       { id: 1, text: "Hello", user: "13.3M+Learners" },
-      { id: 1, text: "Hello", user: "13.3M+Learners" },
-      { id: 1, text: "Hello", user: "13.3M+Learners" },
+      { id: 2, text: "Hello", user: "13.3M+Learners" },
+      { id: 3, text: "Hello", user: "13.3M+Learners" },
     ],
     cardItems: [
       {
@@ -320,3 +320,4 @@ export const skillsList = [
 
   },
 ];
+
