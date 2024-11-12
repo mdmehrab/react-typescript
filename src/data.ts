@@ -135,12 +135,8 @@ export const skillsList = [
     items: [
       { id: 1, text: "Web Development", user: "13.3M+Learners" },
       { id: 2, text: "JavaScript", user: "17.7  M+Learners" },
-      { id: 3, text: "React JS", user: "7M+Learners" },
-      { id: 4, text: "Angular", user: "4M+Learners" },
-      { id: 5, text: "Java", user: "15.5M+Learners" },
-      { id: 6, text: "Android Development", user: "8M+Learners" },
-      { id: 7, text: "IOS Development", user: "4M+Learners" },
-      { id: 8, text: "CSS", user: "9M+Learners" },
+      { id: 3, text: "custom", user: "17.7  M+Learners" },
+   
     ],
     cardItems: [
       {
@@ -182,14 +178,15 @@ export const skillsList = [
         currentPrice: "$19.99",
         beforePrice: "$84.99",
       },
+
       {
         id: 3,
         imgSrc:
-          "https://images.unsplash.com/photo-1585384107568-5bc588c7eefd?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MjB8fHdlYiUyMGRldmVsb3BtZW50fGVufDB8fDB8fHww",
-        title: "Web Development Masterclass-",
-        subTitle: " Online certification Course",
-        author: "YouAccel Training",
-        rating: "4.3",
+          "https://plus.unsplash.com/premium_photo-1678565202049-9e37b2da8060?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHdlYiUyMGRldmVsb3BtZW50fGVufDB8fDB8fHww",
+        title: "hada vore khabo",
+        subTitle: " Devlopment Bootcamp",
+        author: "Colt Steel",
+        rating: "4.7",
         ratingIcons: [
           { id: 1, icon: IoIosStarOutline },
           { id: 2, icon: IoIosStarOutline },
@@ -197,46 +194,50 @@ export const skillsList = [
           { id: 4, icon: IoIosStarOutline },
           { id: 5, icon: IoIosStarOutline },
         ],
-        ratingCounter: "(10,005)",
-        currentPrice: "$12.99",
-        beforePrice: "$69.99",
-      },
-      {
-        id: 4,
-        imgSrc:
-          "https://media.istockphoto.com/id/1456339578/photo/developing-programming-and-coding-technologies-professional-developer-programmer-cooperation.webp?a=1&b=1&s=612x612&w=0&k=20&c=d-61mo1-S520J8dT80uAYu__Wnoz0n1f8VhLF76VxW0=",
-        title: "The Complete Web Developer",
-        subTitle: "Course 3.0 ",
-        author: "Percival,Codestars .over 2 million...",
-        rating: "4.4",
-        ratingIcons: [
-          { id: 1, icon: IoIosStarOutline },
-          { id: 2, icon: IoIosStarOutline },
-          { id: 3, icon: IoIosStarOutline },
-          { id: 4, icon: IoIosStarOutline },
-          { id: 5, icon: IoIosStarOutline },
-        ],
-        ratingCounter: "72,294",
+        ratingCounter: "(276,801)",
         currentPrice: "$19.99",
         beforePrice: "$84.99",
       },
+
+      {
+        id: 3,
+        imgSrc:
+          "https://plus.unsplash.com/premium_photo-1678565202049-9e37b2da8060?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHdlYiUyMGRldmVsb3BtZW50fGVufDB8fDB8fHww",
+        title: "hada vore khabo",
+        subTitle: " Devlopment Bootcamp",
+        author: "Colt Steel",
+        rating: "4.7",
+        ratingIcons: [
+          { id: 1, icon: IoIosStarOutline },
+          { id: 2, icon: IoIosStarOutline },
+          { id: 3, icon: IoIosStarOutline },
+          { id: 4, icon: IoIosStarOutline },
+          { id: 5, icon: IoIosStarOutline },
+        ],
+        ratingCounter: "(276,801)",
+        currentPrice: "$19.99",
+        beforePrice: "$84.99",
+      }
+    
     ],
   },
 
+  
   {
     id: 2,
-    title: "IT Certifications",
+    title: "IT",
     items: [
-      { id: 1, text: "Hello", user: "13.3M+Learners" },
-      { id: 2, text: "Hello", user: "13.3M+Learners" },
-      { id: 3, text: "Hello", user: "13.3M+Learners" },
+      { id: 4, text: "it 1", user: "13.3M+Learners" },
+      { id: 5, text: "it 2", user: "17.7  M+Learners" },
+      { id: 6, text: "it 3", user: "17.7  M+Learners" },
+   
     ],
     cardItems: [
       {
-        id: 1,
+        id: 4,
         imgSrc:
           "https://media.istockphoto.com/id/1290492381/photo/3d-code-programming-for-website-editors-view.jpg?s=1024x1024&w=is&k=20&c=9M-O33J-9jLuAVd096VRd5So8YGYvj6iJH_cLjjmlhk=",
-        title: "hellow world",
+        title: "The Complete 2024 Web",
         subTitle: " Devlopment Bootcamp",
         author: " Dr.Angela Yu Developer and lead...",
         rating: "4.7",
@@ -252,72 +253,67 @@ export const skillsList = [
         beforePrice: "$69.99",
         mostSell: "Bestseller",
       },
+      {
+        id: 4,
+        imgSrc:
+          "https://plus.unsplash.com/premium_photo-1678565202049-9e37b2da8060?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHdlYiUyMGRldmVsb3BtZW50fGVufDB8fDB8fHww",
+        title: "The Web Developer Bootcamp",
+        subTitle: " Devlopment Bootcamp",
+        author: "Colt Steel",
+        rating: "4.7",
+        ratingIcons: [
+          { id: 1, icon: IoIosStarOutline },
+          { id: 2, icon: IoIosStarOutline },
+          { id: 3, icon: IoIosStarOutline },
+          { id: 4, icon: IoIosStarOutline },
+          { id: 5, icon: IoIosStarOutline },
+        ],
+        ratingCounter: "(276,801)",
+        currentPrice: "$19.99",
+        beforePrice: "$84.99",
+      },
+
+      {
+        id: 5,
+        imgSrc:
+          "https://plus.unsplash.com/premium_photo-1678565202049-9e37b2da8060?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHdlYiUyMGRldmVsb3BtZW50fGVufDB8fDB8fHww",
+        title: "it",
+        subTitle: " Devlopment Bootcamp",
+        author: "Colt Steel",
+        rating: "4.7",
+        ratingIcons: [
+          { id: 1, icon: IoIosStarOutline },
+          { id: 2, icon: IoIosStarOutline },
+          { id: 3, icon: IoIosStarOutline },
+          { id: 4, icon: IoIosStarOutline },
+          { id: 5, icon: IoIosStarOutline },
+        ],
+        ratingCounter: "(276,801)",
+        currentPrice: "$19.99",
+        beforePrice: "$84.99",
+      },
+
+      {
+        id: 6,
+        imgSrc:
+          "https://plus.unsplash.com/premium_photo-1678565202049-9e37b2da8060?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fHdlYiUyMGRldmVsb3BtZW50fGVufDB8fDB8fHww",
+        title: "it",
+        subTitle: " Devlopment Bootcamp",
+        author: "Colt Steel",
+        rating: "4.7",
+        ratingIcons: [
+          { id: 1, icon: IoIosStarOutline },
+          { id: 2, icon: IoIosStarOutline },
+          { id: 3, icon: IoIosStarOutline },
+          { id: 4, icon: IoIosStarOutline },
+          { id: 5, icon: IoIosStarOutline },
+        ],
+        ratingCounter: "(276,801)",
+        currentPrice: "$19.99",
+        beforePrice: "$84.99",
+      }
+    
     ],
-
-  },
-
-  {
-    id: 3,
-    title: "Leadership",
-    items: [
-      { id: 1, text: "" },
-      { id: 2, text: "" },
-      { id: 3, text: "" },
-      { id: 4, text: "" },
-      { id: 5, text: "" },
-      { id: 6, text: "" },
-      { id: 7, text: "" },
-      { id: 8, text: "" },
-    ],
-
-  },
-
-  {
-    id: 4,
-    title: "Data Science",
-    items: [
-      { id: 1, text: "" },
-      { id: 2, text: "" },
-      { id: 3, text: "" },
-      { id: 4, text: "" },
-      { id: 5, text: "" },
-      { id: 6, text: "" },
-      { id: 7, text: "" },
-      { id: 8, text: "" },
-    ],
-   
-  },
-
-  {
-    id: 5,
-    title: "Communication",
-    items: [
-      { id: 1, text: "" },
-      { id: 2, text: "" },
-      { id: 3, text: "" },
-      { id: 4, text: "" },
-      { id: 5, text: "" },
-      { id: 6, text: "" },
-      { id: 7, text: "" },
-      { id: 8, text: "" },
-    ],
- 
-  },
-
-  {
-    id: 6,
-    title: "Business Analytics & Intelligence",
-    items: [
-      { id: 1, text: "" },
-      { id: 2, text: "" },
-      { id: 3, text: "" },
-      { id: 4, text: "" },
-      { id: 5, text: "" },
-      { id: 6, text: "" },
-      { id: 7, text: "" },
-      { id: 8, text: "" },
-    ],
-
   },
 ];
 
