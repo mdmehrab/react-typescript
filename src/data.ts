@@ -320,40 +320,58 @@ export const learningFocused = [
     label: "Hands-on training",
     descriptionone: "Upskill effectively with AI-powered coding",
     descriptiontwo: "exercises, practice tests, and quizzes.",
-    imagetwo:
-      "https://cms-images.udemycdn.com/96883mtakkm8/4kbyXne3Slx9Sfz4nTBqdf/8ac2b75db1a118f15e2fb5dfe2bb4567/desktop-hands-on-learning-2x.png",
   },
 
   {
     id: 2,
     imageone:
       "https://cms-images.udemycdn.com/96883mtakkm8/7kN9RBFSMFNHzsGWsElMPi/dde73f8d1c47e046f035274e78410590/hands-on-practice.png",
-    label: "Avoiding conflicts in merge with main branch",
+    label: "Avoiding conflicts in merge ",
     descriptionone: "Upskill effectively with AI-powered coding",
     descriptiontwo: "exercises, practice tests, and quizzes.",
-    imagetwo:
-      "https://cms-images.udemycdn.com/96883mtakkm8/4kbyXne3Slx9Sfz4nTBqdf/8ac2b75db1a118f15e2fb5dfe2bb4567/desktop-hands-on-learning-2x.png",
   },
 
   {
     id: 3,
     imageone:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oD07Xuexpxwsxp6thcQkIz1nk3XuOBUdxA&s",
+      "https://cms-images.udemycdn.com/96883mtakkm8/7kN9RBFSMFNHzsGWsElMPi/dde73f8d1c47e046f035274e78410590/hands-on-practice.png",
     label: "Hands-on training",
     descriptionone: "Upskill effectively with AI-powered coding",
     descriptiontwo: "exercises, practice tests, and quizzes.",
-    imagetwo:
-      "https://cms-images.udemycdn.com/96883mtakkm8/4kbyXne3Slx9Sfz4nTBqdf/8ac2b75db1a118f15e2fb5dfe2bb4567/desktop-hands-on-learning-2x.png",
   },
 
   {
     id: 4,
     imageone:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oD07Xuexpxwsxp6thcQkIz1nk3XuOBUdxA&s",
+      "https://cms-images.udemycdn.com/96883mtakkm8/7kN9RBFSMFNHzsGWsElMPi/dde73f8d1c47e046f035274e78410590/hands-on-practice.png",
     label: "Hands-on training",
     descriptionone: "Upskill effectively with AI-powered coding",
     descriptiontwo: "exercises, practice tests, and quizzes.",
+  },
+];
+
+export const secoundImage = [
+  {
+    id: 1,
     imagetwo:
       "https://cms-images.udemycdn.com/96883mtakkm8/4kbyXne3Slx9Sfz4nTBqdf/8ac2b75db1a118f15e2fb5dfe2bb4567/desktop-hands-on-learning-2x.png",
+  },
+
+  {
+    id: 2,
+    imagetwo:
+      "https://cms-images.udemycdn.com/96883mtakkm8/GUVYFTj0uwEQuJha5j7TZ/133c991fb3b3f1f93a3e842f4baa7f44/desktop-certification-prep-2x.png",
+  },
+
+  {
+    id: 3,
+    imagetwo:
+      "https://cms-images.udemycdn.com/96883mtakkm8/6q4N9BvIQusFoheoALJhGj/678c1a0bb6c2a22d95461d409492231e/desktop-insights-and-analytics-2x.png",
+  },
+
+  {
+    id: 4,
+    imagetwo:
+      "https://cms-images.udemycdn.com/96883mtakkm8/385IhnON960Wvz50ooWIN3/d4e6738c97769258d387b3d609edaad4/desktop-customizable-2x.png",
   },
 ];
