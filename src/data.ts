@@ -136,7 +136,6 @@ export const skillsList = [
       { id: 1, text: "Web Development", user: "13.3M+Learners" },
       { id: 2, text: "JavaScript", user: "17.7  M+Learners" },
       { id: 3, text: "custom", user: "17.7  M+Learners" },
-   
     ],
     cardItems: [
       {
@@ -217,12 +216,10 @@ export const skillsList = [
         ratingCounter: "(276,801)",
         currentPrice: "$19.99",
         beforePrice: "$84.99",
-      }
-    
+      },
     ],
   },
 
-  
   {
     id: 2,
     title: "IT",
@@ -230,7 +227,6 @@ export const skillsList = [
       { id: 4, text: "it 1", user: "13.3M+Learners" },
       { id: 5, text: "it 2", user: "17.7  M+Learners" },
       { id: 6, text: "it 3", user: "17.7  M+Learners" },
-   
     ],
     cardItems: [
       {
@@ -311,9 +307,7 @@ export const skillsList = [
         ratingCounter: "(276,801)",
         currentPrice: "$19.99",
         beforePrice: "$84.99",
-      }
-    
+      },
     ],
   },
 ];
-
