@@ -37,7 +37,7 @@ const LearningFocused = () => {
                 <img
                   className="w-16"
                   src={
-                    showImage?.imageone ||
+                    imageone ||
                     "https://cms-images.udemycdn.com/96883mtakkm8/7kN9RBFSMFNHzsGWsElMPi/dde73f8d1c47e046f035274e78410590/hands-on-practice.png"
                   }
                   alt="image"
