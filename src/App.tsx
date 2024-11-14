@@ -15,9 +15,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/courses/:courseId" element={<CourseDetails />} />
       </Routes>
-      <Footer />
-
       <LearningFocused />
+
+      <Footer />
     </>
   );
 }

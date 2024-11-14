@@ -311,3 +311,49 @@ export const skillsList = [
     ],
   },
 ];
+
+export const learningFocused = [
+  {
+    id: 1,
+    imageone:
+      "https://cms-images.udemycdn.com/96883mtakkm8/7kN9RBFSMFNHzsGWsElMPi/dde73f8d1c47e046f035274e78410590/hands-on-practice.png",
+    label: "Hands-on training",
+    descriptionone: "Upskill effectively with AI-powered coding",
+    descriptiontwo: "exercises, practice tests, and quizzes.",
+    imagetwo:
+      "https://cms-images.udemycdn.com/96883mtakkm8/4kbyXne3Slx9Sfz4nTBqdf/8ac2b75db1a118f15e2fb5dfe2bb4567/desktop-hands-on-learning-2x.png",
+  },
+
+  {
+    id: 2,
+    imageone:
+      "https://cms-images.udemycdn.com/96883mtakkm8/7kN9RBFSMFNHzsGWsElMPi/dde73f8d1c47e046f035274e78410590/hands-on-practice.png",
+    label: "Avoiding conflicts in merge with main branch",
+    descriptionone: "Upskill effectively with AI-powered coding",
+    descriptiontwo: "exercises, practice tests, and quizzes.",
+    imagetwo:
+      "https://cms-images.udemycdn.com/96883mtakkm8/4kbyXne3Slx9Sfz4nTBqdf/8ac2b75db1a118f15e2fb5dfe2bb4567/desktop-hands-on-learning-2x.png",
+  },
+
+  {
+    id: 3,
+    imageone:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oD07Xuexpxwsxp6thcQkIz1nk3XuOBUdxA&s",
+    label: "Hands-on training",
+    descriptionone: "Upskill effectively with AI-powered coding",
+    descriptiontwo: "exercises, practice tests, and quizzes.",
+    imagetwo:
+      "https://cms-images.udemycdn.com/96883mtakkm8/4kbyXne3Slx9Sfz4nTBqdf/8ac2b75db1a118f15e2fb5dfe2bb4567/desktop-hands-on-learning-2x.png",
+  },
+
+  {
+    id: 4,
+    imageone:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS-oD07Xuexpxwsxp6thcQkIz1nk3XuOBUdxA&s",
+    label: "Hands-on training",
+    descriptionone: "Upskill effectively with AI-powered coding",
+    descriptiontwo: "exercises, practice tests, and quizzes.",
+    imagetwo:
+      "https://cms-images.udemycdn.com/96883mtakkm8/4kbyXne3Slx9Sfz4nTBqdf/8ac2b75db1a118f15e2fb5dfe2bb4567/desktop-hands-on-learning-2x.png",
+  },
+];
