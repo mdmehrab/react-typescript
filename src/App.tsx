@@ -4,6 +4,7 @@ import Toolbar from "./components/Toolbar";
 import Home from "./pages/Home";
 import CourseDetails from "./components/CourseDetails";
 import LearningFocused from "./components/LearningFocused";
+import AccelerateGrowth from "./components/AccelerateGrowth";
 
 function App() {
   return (
@@ -16,7 +17,7 @@ function App() {
         <Route path="/courses/:courseId" element={<CourseDetails />} />
       </Routes>
       <LearningFocused />
-
+      <AccelerateGrowth />
       <Footer />
     </>
   );

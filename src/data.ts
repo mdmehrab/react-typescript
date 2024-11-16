@@ -1,5 +1,5 @@
 import { IoIosStarOutline } from "react-icons/io";
-
+import { FaArrowRightLong } from "react-icons/fa6";
 export const footerLinks = [
   [
     {
@@ -325,7 +325,7 @@ export const learningFocused = [
   {
     id: 2,
     imageone:
-      "https://cms-images.udemycdn.com/96883mtakkm8/7kN9RBFSMFNHzsGWsElMPi/dde73f8d1c47e046f035274e78410590/hands-on-practice.png",
+      "https://cms-images.udemycdn.com/96883mtakkm8/2Xh9YHJustDwCEjn5IlO25/93e9b15c6e74876db0dec63466fcc5a0/certificate.png",
     label: "Avoiding conflicts in merge ",
     descriptionone: "Upskill effectively with AI-powered coding",
     descriptiontwo: "exercises, practice tests, and quizzes.",
@@ -334,19 +334,25 @@ export const learningFocused = [
   {
     id: 3,
     imageone:
-      "https://cms-images.udemycdn.com/96883mtakkm8/7kN9RBFSMFNHzsGWsElMPi/dde73f8d1c47e046f035274e78410590/hands-on-practice.png",
+      "https://cms-images.udemycdn.com/96883mtakkm8/6w8plrr7vY9rIY46UuX0q5/2f0a3f0c22e99bd2d430b998c81321f2/empty-state-1.png",
     label: "Hands-on training",
+    plan: "Enterprise Plan",
     descriptionone: "Upskill effectively with AI-powered coding",
     descriptiontwo: "exercises, practice tests, and quizzes.",
+    more: "Find out more",
+    icon: FaArrowRightLong,
   },
 
   {
     id: 4,
     imageone:
-      "https://cms-images.udemycdn.com/96883mtakkm8/7kN9RBFSMFNHzsGWsElMPi/dde73f8d1c47e046f035274e78410590/hands-on-practice.png",
+      "https://cms-images.udemycdn.com/96883mtakkm8/2tKGBrb1N60wox2Lh8j3tz/7f1528c9f88ea47bd6ebb46f345902c3/organizations-2.png",
     label: "Hands-on training",
+    plan: "Enterprise Plan",
     descriptionone: "Upskill effectively with AI-powered coding",
     descriptiontwo: "exercises, practice tests, and quizzes.",
+    more: "Find out more",
+    icon: FaArrowRightLong,
   },
 ];
 
