@@ -11,6 +11,7 @@ import {
   ListItem,
 } from "@material-tailwind/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
+import { useNavigate } from "react-router-dom";
 
 type NestedMenuItem = {
   title: string;
@@ -27,8 +28,6 @@ function NavListMenu(): JSX.Element {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [openNestedMenu, setOpenNestedMenu] = useState<boolean>(false);
 
-
-
   const renderItems = nestedMenuItems.map(({ title }, key) => (
     <MenuItem
       key={key}
@@ -42,16 +41,12 @@ function NavListMenu(): JSX.Element {
     </MenuItem>
   ));
 
-
-
-
   return (
     <Menu
       open={isMenuOpen}
       handler={(isOpen) => setIsMenuOpen(isOpen)}
       placement="bottom"
       allowHover
-    
     >
       <MenuHandler>
         <Typography
@@ -128,62 +123,77 @@ function NavListMenu(): JSX.Element {
 const Toolbar = (): JSX.Element => {
   const [showNavbar, setShowNavbar] = useState(false);
 
+  const navigate = useNavigate();
+
   useEffect(() => {
     const handleScroll = () => {
       // Hide navbar when scroll position is 500px or more
       if (window.scrollY >= 300) {
         setShowNavbar(true);
-      } else{
-        setShowNavbar(false)
+      } else {
+        setShowNavbar(false);
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     // Cleanup the event listener on unmount
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
+  // replace route
+  const handleSignUp = () => {
+    navigate("/signup");
+  };
+
   return (
     <>
-    <div className={`bg-white ${showNavbar && ' fixed top-0 w-screen z-10 px-4'}`}>
-      <div className="flex justify-between items-center p-3">
-        <div className="flex items-center gap-3 w-[55%]">
-          <div className="w-[10%]">
-            <span className="text-xl font-bold">Udemy</span>
+      <div
+        className={`bg-white ${
+          showNavbar && " fixed top-0 w-screen z-10 px-4"
+        }`}
+      >
+        <div className="flex justify-between items-center p-3">
+          <div className="flex items-center gap-3 w-[55%]">
+            <div className="w-[10%]">
+              <span className="text-xl font-bold">Udemy</span>
+            </div>
+            <NavListMenu /> {/* Blocks dropdown */}
+            <div className="w-[80%] flex items-center gap-2 relative">
+              <span className="absolute right-3">
+                <CiSearch />
+              </span>
+              <input
+                className="w-full px-2 py-3 rounded-3xl text-sm focus:outline-none"
+                type="search"
+                placeholder="Search for anything"
+              />
+            </div>
           </div>
-          <NavListMenu /> {/* Blocks dropdown */}
-          <div className="w-[80%] flex items-center gap-2 relative">
-            <span className="absolute right-3">
-              <CiSearch />
-            </span>
-            <input
-              className="w-full px-2 py-3 rounded-3xl text-sm focus:outline-none"
-              type="search"
-              placeholder="Search for anything"
-            />
-          </div>
-        </div>
 
-        <div className="flex items-center gap-8 w-[45%] justify-end">
-          <div className="text-sm">Udemy Business</div>
-          <div className="text-sm">Teach on Udemy</div>
-          <div>
-            <MdOutlineShoppingCart />
-          </div>
-          <div className="flex gap-2">
-            <button className="border border-black px-3 py-1">Log in</button>
-            <button className="text-white px-3 py-1 bg-black">Sign up</button>
-          </div>
-          <div className="border border-black px-2 py-2">
-            <GrLanguage />
+          <div className="flex items-center gap-8 w-[45%] justify-end">
+            <div className="text-sm">Udemy Business</div>
+            <div className="text-sm">Teach on Udemy</div>
+            <div>
+              <MdOutlineShoppingCart />
+            </div>
+            <div className="flex gap-2">
+              <button className="border border-black px-3 py-1">Log in</button>
+              <button
+                className="text-white px-3 py-1 bg-black"
+                onClick={handleSignUp}
+              >
+                Sign up
+              </button>
+            </div>
+            <div className="border border-black px-2 py-2">
+              <GrLanguage />
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    
     </>
   );
 };

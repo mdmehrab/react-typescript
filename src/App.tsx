@@ -7,6 +7,7 @@ import LearningFocused from "./components/LearningFocused";
 import AccelerateGrowth from "./components/AccelerateGrowth";
 import { useEffect, useState } from "react";
 import Loader from "./common/Loader";
+import Register from "./pages/Register";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -31,6 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/courses/:courseId" element={<CourseDetails />} />
+        <Route path="/signup" element={<Register />} />
       </Routes>
       <LearningFocused />
       <AccelerateGrowth />
