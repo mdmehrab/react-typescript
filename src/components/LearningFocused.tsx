@@ -51,9 +51,9 @@ const LearningFocused = () => {
               } = item;
               return (
                 <div
-                  className={`flex col-span-1 border-l-8 border border-purple-500 px-4 w-[500px] rounded-md items-center gap-5 py-10 my-4 hover:bg-blue-gray-50 bg-white ${
+                  className={`flex col-span-1 border-l-8 border  px-4 w-[500px] rounded-md items-center gap-5 py-10 my-4 hover:bg-blue-gray-50 bg-white ${
                     activeCard === id
-                      ? "border-blue-500"
+                      ? "border-purple-500"
                       : " border border-gray-400"
                   }`}
                   key={id}
