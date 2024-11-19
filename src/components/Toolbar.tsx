@@ -180,7 +180,7 @@ const Toolbar = (): JSX.Element => {
               <MdOutlineShoppingCart />
             </div>
             <div className="flex gap-2">
-              <button className="border border-black px-3 py-1">Log in</button>
+              <button className="border border-black px-3 py-1" onClick={() => navigate('/login')}>Log in</button>
               <button
                 className="text-white px-3 py-1 bg-black"
                 onClick={handleSignUp}

@@ -3,11 +3,10 @@ import Footer from "./components/Footer";
 import Toolbar from "./components/Toolbar";
 import Home from "./pages/Home";
 import CourseDetails from "./components/CourseDetails";
-import LearningFocused from "./components/LearningFocused";
-import AccelerateGrowth from "./components/AccelerateGrowth";
 import { useEffect, useState } from "react";
 import Loader from "./common/Loader";
 import Register from "./pages/Register";
+import Login from "./pages/Login";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -33,9 +32,9 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/courses/:courseId" element={<CourseDetails />} />
         <Route path="/signup" element={<Register />} />
+        <Route path='/login' element={<Login />} />
       </Routes>
-      <LearningFocused />
-      <AccelerateGrowth />
+
       <Footer />
     </>
   );
