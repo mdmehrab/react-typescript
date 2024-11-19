@@ -13,8 +13,8 @@ const Login = () => {
           />
         </div>
         <div className="w-full max-w-md mx-auto mt-14">
-          <div className="font-bold text-2xl">
-            <p>Log in to your Udemy</p>
+          <div className="font-bold text-3xl ">
+            <p className="justify-center flex">Log in to your Udemy</p>
             <p className="justify-center flex">account</p>
           </div>
 
