@@ -42,21 +42,34 @@ const Login = () => {
             Log in
           </button>
 
-          <div className="flex justify-between mt-4">
-            <p>or</p>
-            <button className="text-purple-900 underline">
+          <div className="flex justify-center mt-4 gap-1">
+            or
+            <button className="text-purple-900 underline font-bold">
               Forgot Password?
             </button>
           </div>
 
-          <div className="mt-6">
-            <span>Other login options</span>
+          <div className="mt-6 flex justify-center">
+            <span className="text-gray-600">Other login options</span>
           </div>
 
-          <div className="flex space-x-4 mt-4">
-            <FcGoogle size={24} />
-            <BiLogoFacebookCircle size={24} />
-            <FaApple size={24} />
+          <div className="flex space-x-4 mt-4 justify-center">
+            <button className="border border-black p-3 hover:bg-gray-200">
+              <FcGoogle size={24} />
+            </button>
+            <button className="border border-black p-3 hover:bg-gray-200">
+              <BiLogoFacebookCircle size={24} />
+            </button>
+            <button className="border border-black p-3 hover:bg-gray-200">
+              <FaApple size={24} />
+            </button>
+          </div>
+
+          <div className="bg-gray-300">
+            <p>
+              Don't have an account? <button> Sign up</button>
+            </p>
+            <button>Log in with your organization</button>
           </div>
         </div>
       </div>
