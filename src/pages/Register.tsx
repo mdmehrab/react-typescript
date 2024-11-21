@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios";
-
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -55,6 +55,8 @@ const Register = () => {
       toast.error("Failed to register user. Please try again.");
     }
   };
+
+  const logInNavigate = useNavigate();
 
   return (
     <div className="w-full bg-white p-8">
@@ -166,7 +168,10 @@ const Register = () => {
             <div className="mt-8 flex justify-center">
               <p className="text-sm text-gray-800">
                 Already have an account?{" "}
-                <button className="text-purple-900 font-bold underline text-[15px]">
+                <button
+                  onClick={() => logInNavigate("/login")}
+                  className="text-purple-900 font-bold underline text-[15px]"
+                >
                   Log in
                 </button>
               </p>

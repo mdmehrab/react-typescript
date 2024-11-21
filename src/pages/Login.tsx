@@ -1,8 +1,12 @@
+import { useNavigate } from "react-router-dom";
+
 import { FcGoogle } from "react-icons/fc";
 import { BiLogoFacebookCircle } from "react-icons/bi";
 import { FaApple } from "react-icons/fa6";
 
 const Login = () => {
+  const ligInNavigate = useNavigate();
+
   return (
     <div className="w-full bg-white p-8">
       <div className="flex">
@@ -44,7 +48,7 @@ const Login = () => {
 
           <div className="flex justify-center mt-4 gap-1">
             or
-            <button className="text-purple-900 underline font-bold">
+            <button className="text-purple-900 underline font-bold underline-offset-4">
               Forgot Password?
             </button>
           </div>
@@ -65,11 +69,20 @@ const Login = () => {
             </button>
           </div>
 
-          <div className="bg-gray-300">
-            <p>
-              Don't have an account? <button> Sign up</button>
+          <div className="bg-gray-100 mt-10 py-2">
+            <p className="flex justify-center border border-b-gray-400 py-3 ">
+              Don't have an account?{" "}
+              <button
+                onClick={() => ligInNavigate("/signup")}
+                className="text-purple-800 font-bold underline underline-offset-4"
+              >
+                {" "}
+                Sign up
+              </button>
             </p>
-            <button>Log in with your organization</button>
+            <span className="flex justify-center mt-2 pb-2 text-purple-900 font-bold underline underline-offset-4">
+              <button>Log in with your organization</button>
+            </span>
           </div>
         </div>
       </div>
