@@ -1,5 +1,9 @@
 import { IoIosStarOutline } from "react-icons/io";
 import { FaArrowRightLong } from "react-icons/fa6";
+import { IoPersonSharp } from "react-icons/io5";
+
+import { IoCheckmarkCircleOutline } from "react-icons/io5";
+
 export const footerLinks = [
   [
     {
@@ -379,5 +383,147 @@ export const secoundImage = [
     id: 4,
     imagetwo:
       "https://cms-images.udemycdn.com/96883mtakkm8/385IhnON960Wvz50ooWIN3/d4e6738c97769258d387b3d609edaad4/desktop-customizable-2x.png",
+  },
+];
+
+export const accelerateGrowth = [
+  {
+    id: 1,
+    plan: "Personal Plan",
+    whom: "For you",
+    iconOne: IoPersonSharp,
+    people: " Individual",
+    prize: "Starting at $11.00 per month",
+    Billed: "Billed monthly or annually. Cancel anytime.",
+    button: "Try it free",
+    buttonIcon: FaArrowRightLong,
+
+    access: [
+      {
+        id: 1,
+        accessIcon:IoPersonSharp,
+        accessText: "Access to 12,000+ top courses",
+      },
+      {
+        id: 2,
+        accessIcon:IoPersonSharp,
+        accessText: "Certification prep",
+      },
+      {
+        id: 3,
+        accessIcon:IoPersonSharp,
+        accessText: "Goal-focused recommendations",
+      },
+      {
+        id: 4,
+        accessIcon:IoPersonSharp,
+        accessText: "AI-powered coding exercises",
+      },
+    ],
+  },
+
+  {
+    id: 2,
+    plan: "Team Plan",
+    whom: "For your team",
+    iconOne: IoPersonSharp,
+    people: " 2 to 20 people",
+    prize: "$18.00 a month per user",
+    billed: "Billed annually. Cancel anytime.",
+    button: "Try it free",
+    buttonIcon: FaArrowRightLong,
+
+    access: [
+      {
+        id: 1,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Access to 12,000+ top courses",
+      },
+      {
+        id: 2,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Certification prep",
+      },
+      {
+        id: 3,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Goal-focused recommendations",
+      },
+      {
+        id: 4,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "AI-powered coding exercises",
+      },
+      {
+        id: 4,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Analytics and adoption reports",
+      },
+    ],
+  },
+
+  {
+    id: 3,
+    plan: "Enterprise Plan",
+    whom: "For your whole organization",
+    iconOne: IoPersonSharp,
+    people: "More than 20 people",
+    prize: "Contact sales for pricing",
+
+    button: "Request a demo",
+    buttonIcon: FaArrowRightLong,
+
+    access: [
+      {
+        id: 1,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Access to 27,000+ top courses",
+      },
+      {
+        id: 2,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Certification prep",
+      },
+      {
+        id: 3,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Goal-focused recommendations",
+      },
+      {
+        id: 4,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "AI-powered coding exercises",
+      },
+      {
+        id: 5,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Advanced analytics and insights",
+      },
+      {
+        id: 6,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Dedicated customer success team",
+      },
+      {
+        id: 7,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "International course collection featuring 15 languages",
+      },
+      {
+        id: 8,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Customizable content",
+      },
+      {
+        id: 9,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Hands-on tech training with add-on",
+      },
+      {
+        id: 10,
+        accessIcon: IoCheckmarkCircleOutline,
+        accessText: "Strategic implementation services with add-on",
+      },
+    ],
   },
 ];
