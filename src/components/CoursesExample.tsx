@@ -1,49 +1,60 @@
 import { useState, useEffect } from "react";
-import { skillsList } from "../data"; // Import your data
+import { skillsList } from "../data"; 
 import { Link } from "react-router-dom";
 
 function CoursesExample() {
-  const [selectedSkills, setSelectedSkills] = useState<any[]>([]); // To store the card items
-  const [activeTab, setActiveTab] = useState<number | null>(null); // Track the active tab
-  const [filteredItems, setFilteredItems] = useState<any[]>([]); // To store the items for filters
+  const [selectedSkills, setSelectedSkills] = useState<any[]>([]); 
+  const [activeTab, setActiveTab] = useState<number | null>(null);
+  const [filteredItems, setFilteredItems] = useState<any[]>([]);
 
-  // Handle tab click, set active tab and filter items accordingly
-  const handleTabClick = (id: number) => {
-    setActiveTab(id);
+  // fetch courses 
+  const [courses, setCourses] = useState([])
 
-    const selectedSkill = skillsList.find((skill) => skill.id === id);
-    if (selectedSkill) {
-      setFilteredItems(selectedSkill.items || []); // Set the filtered items based on active tab
-      setSelectedSkills(selectedSkill.cardItems || []); // Set the card items for the selected tab
-    }
-  };
+  console.log(import.meta.env.VITE_API_URL)
 
-  // Handle button click to filter cards based on selected item
+
+  useEffect(() => {
+    const fetchCourses = async () => {
+      try {
+        const response = await fetch(`${import.meta.env.VITE_API_URL}/courses/all-courses`); 
+        if (!response.ok) {
+          throw new Error('Failed to fetch courses');
+        }
+        const data = await response.json();
+        setCourses(data);  
+      } catch (error) {
+        console.error('Error fetching courses:', error);
+      }
+    };
+
+    fetchCourses();  
+  }, []); 
+
+
+  console.log(courses)
+
   const handleBtn = (id: number) => {
     const selectedSkill = skillsList.find((skill) => skill.id === activeTab);
 
     if (selectedSkill) {
-      // Filter cards based on the button clicked
       const filteredCards = selectedSkill.cardItems.filter(
         (card) => card.id === id
       );
 
-      // If no cards are filtered, show the full set of cardItems
       setSelectedSkills(
         filteredCards.length ? filteredCards : selectedSkill.cardItems
       );
     }
   };
 
-  // Set initial tab on page load based on the initial data
   useEffect(() => {
     const initialSkill = skillsList.find(
-      (item) => item.items?.some((ele) => ele.text === "Web Development") // Initial filter, e.g., Web Development
+      (item) => item.items?.some((ele) => ele.text === "Web Development") 
     );
     if (initialSkill) {
-      setActiveTab(initialSkill.id); // Set the initial active tab
-      setFilteredItems(initialSkill.items || []); // Set initial filtered items
-      setSelectedSkills(initialSkill.cardItems || []); // Set initial card items
+      setActiveTab(initialSkill.id); 
+      setFilteredItems(initialSkill.items || []); 
+      setSelectedSkills(initialSkill.cardItems || []); 
     }
   }, []);
 
@@ -69,7 +80,7 @@ function CoursesExample() {
                   ? "border-b-2 border-blue-500 text-blue-500"
                   : "text-red-500"
               }`}
-              onClick={() => handleTabClick(item.id)} // Handle tab click
+              onClick={() => handleTabClick(item.id)}
             >
               {item.title}
             </button>
@@ -87,35 +98,35 @@ function CoursesExample() {
 
         {/* Cards Section */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 bg-gray-50">
-          {selectedSkills.map((cardItem) => (
+          {courses?.map((cardItem) => (
             <Link
-              to={`/courses/${cardItem.id}`}
-              key={cardItem.id}
+              to={`/courses/${cardItem._id}`}
+              key={cardItem._id}
               className="card p-4 border rounded-lg shadow"
             >
               <img
-                src={cardItem.imgSrc}
+                src={cardItem.imageUrl}
                 alt={cardItem.title}
                 className="w-full h-40 object-cover rounded"
               />
               <h3 className="text-lg font-bold mt-2">{cardItem.title}</h3>
-              <p className="text-gray-500">{cardItem.subTitle}</p>
-              <p className="text-sm text-gray-600">{cardItem.author}</p>
+              {/* <p className="text-gray-500">{cardItem.subTitle}</p> */}
+              {/* <p className="text-sm text-gray-600">{cardItem.author}</p> */}
               <div className="flex items-center">
-                <div>{cardItem.rating}</div>
-                <div className="ml-2">{cardItem.ratingCounter}</div>
+                {/* <div>{cardItem.rating}</div> */}
+                {/* <div className="ml-2">{cardItem.ratingCounter}</div> */}
               </div>
               <div className="text-lg font-semibold">
-                {cardItem.currentPrice}{" "}
+                {/* {cardItem.currentPrice}{" "} */}
                 <span className="line-through text-gray-500">
-                  {cardItem.beforePrice}
+                  {/* {cardItem.beforePrice} */}
                 </span>
               </div>
-              {cardItem.mostSell && (
+              {/* {cardItem.mostSell && (
                 <div className="text-green-600 font-bold">
                   {cardItem.mostSell}
                 </div>
-              )}
+              )} */}
             </Link>
           ))}
         </div>
