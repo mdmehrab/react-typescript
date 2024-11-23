@@ -23,5 +23,5 @@ body{
 
 .animate-marquee {
   display: flex;
-  animation: marquee 4s linear infinite;
+  animation: marquee 10s linear infinite;
 }

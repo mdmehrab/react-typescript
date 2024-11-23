@@ -1,6 +1,6 @@
-import React from "react";
 
-const PartnersBanner: React.FC = () => {
+
+const PartnersBanner = () => {
   const logos = [
     {
       src: "https://cms-images.udemycdn.com/content/tqevknj7om/svg/volkswagen_logo.svg?position=c&quality=80&x.app=portals",
