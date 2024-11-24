@@ -1,37 +1,37 @@
 import { useState, useEffect } from "react";
-import { skillsList } from "../data"; 
+import { skillsList } from "../data";
 import { Link } from "react-router-dom";
 
 function CoursesExample() {
-  const [selectedSkills, setSelectedSkills] = useState<any[]>([]); 
+  const [selectedSkills, setSelectedSkills] = useState<any[]>([]);
   const [activeTab, setActiveTab] = useState<number | null>(null);
   const [filteredItems, setFilteredItems] = useState<any[]>([]);
 
-  // fetch courses 
-  const [courses, setCourses] = useState([])
+  // fetch courses
+  const [courses, setCourses] = useState([]);
 
-  console.log(import.meta.env.VITE_API_URL)
-
+  console.log(import.meta.env.VITE_API_URL);
 
   useEffect(() => {
     const fetchCourses = async () => {
       try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/courses/all-courses`); 
+        const response = await fetch(
+          `${import.meta.env.VITE_API_URL}/courses/all-courses`
+        );
         if (!response.ok) {
-          throw new Error('Failed to fetch courses');
+          throw new Error("Failed to fetch courses");
         }
         const data = await response.json();
-        setCourses(data);  
+        setCourses(data);
       } catch (error) {
-        console.error('Error fetching courses:', error);
+        console.error("Error fetching courses:", error);
       }
     };
 
-    fetchCourses();  
-  }, []); 
+    fetchCourses();
+  }, []);
 
-
-  console.log(courses)
+  console.log(courses);
 
   const handleBtn = (id: number) => {
     const selectedSkill = skillsList.find((skill) => skill.id === activeTab);
@@ -48,13 +48,13 @@ function CoursesExample() {
   };
 
   useEffect(() => {
-    const initialSkill = skillsList.find(
-      (item) => item.items?.some((ele) => ele.text === "Web Development") 
+    const initialSkill = skillsList.find((item) =>
+      item.items?.some((ele) => ele.text === "Web Development")
     );
     if (initialSkill) {
-      setActiveTab(initialSkill.id); 
-      setFilteredItems(initialSkill.items || []); 
-      setSelectedSkills(initialSkill.cardItems || []); 
+      setActiveTab(initialSkill.id);
+      setFilteredItems(initialSkill.items || []);
+      setSelectedSkills(initialSkill.cardItems || []);
     }
   }, []);
 
