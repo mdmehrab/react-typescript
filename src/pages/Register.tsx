@@ -1,8 +1,8 @@
-import React, { useState } from "react";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { useState } from "react";
+import Axios from "axios";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import axios from "axios";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -14,12 +14,6 @@ const Register = () => {
     gender: "male",
     country: "",
   });
-
-  
-  const navigate = useNavigate();
-
-  const [_error, setError] = useState<string | null>(null);
-  const [_success, setSuccess] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -37,33 +31,8 @@ const Register = () => {
         `${import.meta.env.VITE_API_URL}/users/register`,
         formData
       );
-
-      setError(null);
-      setFormData({
-        username: "",
-        email: "",
-        password: "",
-        roles: "USER",
-        mobileNumber: "",
-        gender: "male",
-        country: "",
-      });
-
-      if (response) {
-        toast.success("User registered successfully!");
-        // navigate("/login")
-      }
-    } catch (error) {
-      setSuccess(null);
-      // setError("Failed to register user. Please try again.");
-      toast.error("Failed to register user. Please try again.");
-    }
+    } catch {}
   };
-
-  const handleNavigate = () =>{
-    navigate('/login')
-  }
-
 
   return (
     <div className="w-full bg-white p-8">
@@ -83,7 +52,7 @@ const Register = () => {
             <input
               placeholder="Full name"
               type="text"
-              name="username"
+              name=" username"
               value={formData.username}
               onChange={handleChange}
               className="w-full p-4 border border-black  placeholder-black font-bold text-xs"
@@ -106,7 +75,7 @@ const Register = () => {
             <input
               placeholder="Password"
               type="password"
-              name="password"
+              name=" password"
               value={formData.password}
               onChange={handleChange}
               className="w-full p-4 border border-black  placeholder-black font-bold text-xs"
@@ -144,7 +113,7 @@ const Register = () => {
             <input
               placeholder="Country"
               type="text"
-              name="country"
+              name=" country"
               value={formData.country}
               onChange={handleChange}
               className="w-full p-2 border border-black  placeholder-black font-bold text-xs "
@@ -154,8 +123,8 @@ const Register = () => {
 
           <div>
             <button
-              onClick={handleSubmit}
               className="bg-purple-500 font-bold text-white p-3  w-full"
+              onClick={handleSubmit}
             >
               Sign up
             </button>
@@ -175,10 +144,7 @@ const Register = () => {
             <div className="mt-8 flex justify-center">
               <p className="text-sm text-gray-800">
                 Already have an account?{" "}
-                <button
-                  onClick={handleNavigate}
-                  className="text-purple-900 font-bold underline text-[15px]"
-                >
+                <button className="text-purple-900 font-bold underline text-[15px]">
                   Log in
                 </button>
               </p>
@@ -186,8 +152,6 @@ const Register = () => {
           </div>
         </div>
       </div>
-
-  
 
       <ToastContainer />
     </div>
