@@ -15,8 +15,11 @@ const Register = () => {
     country: "",
   });
 
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState<string | null>(null);
+  
+  const navigate = useNavigate();
+
+  const [_error, setError] = useState<string | null>(null);
+  const [_success, setSuccess] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -31,7 +34,7 @@ const Register = () => {
   const handleSubmit = async () => {
     try {
       const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/users`,
+        `${import.meta.env.VITE_API_URL}/users/register`,
         formData
       );
 
@@ -48,15 +51,19 @@ const Register = () => {
 
       if (response) {
         toast.success("User registered successfully!");
+        // navigate("/login")
       }
     } catch (error) {
       setSuccess(null);
-      setError("Failed to register user. Please try again.");
+      // setError("Failed to register user. Please try again.");
       toast.error("Failed to register user. Please try again.");
     }
   };
 
-  const logInNavigate = useNavigate();
+  const handleNavigate = () =>{
+    navigate('/login')
+  }
+
 
   return (
     <div className="w-full bg-white p-8">
@@ -169,7 +176,7 @@ const Register = () => {
               <p className="text-sm text-gray-800">
                 Already have an account?{" "}
                 <button
-                  onClick={() => logInNavigate("/login")}
+                  onClick={handleNavigate}
                   className="text-purple-900 font-bold underline text-[15px]"
                 >
                   Log in
@@ -180,8 +187,7 @@ const Register = () => {
         </div>
       </div>
 
-      {error && <div className="text-red-500 mt-4">{error}</div>}
-      {success && <div className="text-green-500 mt-4">{success}</div>}
+  
 
       <ToastContainer />
     </div>
