@@ -1,0 +1,17 @@
+.outer-container {
+  height: 300px;
+  overflow: scroll;
+  border: 2px solid black;
+  padding: 10px;
+}
+
+.inner-container {
+  height: 500px;
+  overflow: scroll;
+  background-color: lightblue;
+  padding: 10px;
+}
+
+.overscroll-behavior {
+  overscroll-behavior: contain;
+}
