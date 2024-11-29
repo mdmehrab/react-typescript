@@ -1,5 +1,4 @@
 import { useState } from "react";
-import Axios from "axios";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
