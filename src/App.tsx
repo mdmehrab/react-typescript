@@ -3,6 +3,7 @@ import Footer from "./components/Footer";
 import Toolbar from "./components/Toolbar";
 import Home from "./pages/Home";
 import CourseDetails from "./components/CourseDetails";
+import UserTable from "./components/UserTable";
 import { useEffect, useState } from "react";
 import Loader from "./common/Loader";
 import Register from "./pages/Register";
@@ -14,7 +15,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 500);
 
     return () => clearTimeout(timer);
   }, []);
@@ -33,6 +34,7 @@ function App() {
         <Route path="/courses/:courseId" element={<CourseDetails />} />
         <Route path="/signup" element={<Register />} />
         <Route path='/login' element={<Login />} />
+        <Route path="/approved/user-table" element={<UserTable />} />
       </Routes>
 
       <Footer />
