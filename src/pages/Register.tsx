@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
@@ -20,7 +20,7 @@ const Register = () => {
     const { name, value } = e.target;
     setFormData((prevData) => ({
       ...prevData,
-      [name]: value,
+      [name.trim()]: value,
     }));
   };
 
@@ -29,8 +29,14 @@ const Register = () => {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/users/register`,
         formData
-      );  
-    } catch {}
+      );
+      if (response.status === 201) {
+        toast.success("Registration successful!");
+      }
+    } catch (error) {
+      const errorMessage = "Something went wrong!";
+      toast.error(errorMessage);
+    }
   };
 
   return (
@@ -51,7 +57,7 @@ const Register = () => {
             <input
               placeholder="Full name"
               type="text"
-              name=" username"
+              name="username"
               value={formData.username}
               onChange={handleChange}
               className="w-full p-4 border border-black  placeholder-black font-bold text-xs"
@@ -74,7 +80,7 @@ const Register = () => {
             <input
               placeholder="Password"
               type="password"
-              name=" password"
+              name="password"
               value={formData.password}
               onChange={handleChange}
               className="w-full p-4 border border-black  placeholder-black font-bold text-xs"
@@ -112,7 +118,7 @@ const Register = () => {
             <input
               placeholder="Country"
               type="text"
-              name=" country"
+              name="country"
               value={formData.country}
               onChange={handleChange}
               className="w-full p-2 border border-black  placeholder-black font-bold text-xs "
