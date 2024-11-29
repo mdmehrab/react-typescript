@@ -1,11 +1,43 @@
-import { useNavigate } from "react-router-dom";
-
+import { useState } from "react";
 import { FcGoogle } from "react-icons/fc";
 import { BiLogoFacebookCircle } from "react-icons/bi";
 import { FaApple } from "react-icons/fa6";
+import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const ligInNavigate = useNavigate();
+  const [loginCredentials, setLoginCredetials] = useState({
+    email: "",
+    password: "",
+  });
+
+  const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+
+    setLoginCredetials((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleLoginSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        `${import.meta.env.VITE_API_URL}/users/login`,
+        loginCredentials
+      );
+
+      if (response) {
+        toast.success("Login successful!");
+      }
+    } catch (err) {
+      toast.error("Login failed. Please check your credentials.");
+      console.log(err);
+    }
+  };
 
   return (
     <div className="w-full bg-white p-8">
@@ -27,6 +59,8 @@ const Login = () => {
               placeholder="Email"
               type="email"
               name="email"
+              value={loginCredentials.email}
+              onChange={handleLoginChange}
               className="w-full p-4 border border-black placeholder-black font-bold text-xs"
               required
             />
@@ -37,12 +71,17 @@ const Login = () => {
               placeholder="Password"
               type="password"
               name="password"
+              value={loginCredentials.password}
+              onChange={handleLoginChange}
               className="w-full p-4 border border-black placeholder-black font-bold text-xs"
               required
             />
           </div>
 
-          <button className="bg-purple-500 font-bold text-white p-3 w-full">
+          <button
+            className="bg-purple-500 font-bold text-white p-3 w-full"
+            onClick={handleLoginSubmit}
+          >
             Log in
           </button>
 
@@ -72,11 +111,7 @@ const Login = () => {
           <div className="bg-gray-100 mt-10 py-2">
             <p className="flex justify-center border border-b-gray-400 py-3 ">
               Don't have an account?{" "}
-              <button
-                onClick={() => ligInNavigate("/signup")}
-                className="text-purple-800 font-bold underline underline-offset-4"
-              >
-                {" "}
+              <button className="text-purple-800 font-bold underline underline-offset-4">
                 Sign up
               </button>
             </p>
@@ -86,6 +121,9 @@ const Login = () => {
           </div>
         </div>
       </div>
+
+      {/* Toast Notifications */}
+      <ToastContainer />
     </div>
   );
 };
