@@ -20,12 +20,12 @@ const AccelerateGrowth = () => {
               id,
               plan,
               whom,
-           iconOne,
+          //  iconOne,
               people,
               prize,
               billed,
               button,
-              buttonIcon,
+              // buttonIcon,
             } = item;
             return (
               <div className="border border-gray-400 border-t-8 border-t-purple-400 rounded-md">

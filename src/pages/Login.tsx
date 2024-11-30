@@ -5,12 +5,21 @@ import { FaApple } from "react-icons/fa6";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from 'react-redux';
+import { AppDispatch } from '../features/store/store';
+import { login } from '../features/auth/authSlice';
 
 const Login = () => {
   const [loginCredentials, setLoginCredetials] = useState({
     email: "",
     password: "",
   });
+
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleLogin = () => {
+    dispatch(login({ id: '1', name: 'John Doe' }));
+  };
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -30,9 +39,15 @@ const Login = () => {
         loginCredentials
       );
 
+      
       if (response) {
         toast.success("Login successful!");
       }
+
+      setLoginCredetials({
+        email: "",
+        password: ""
+      })
     } catch (err) {
       toast.error("Login failed. Please check your credentials.");
       console.log(err);
@@ -40,6 +55,8 @@ const Login = () => {
   };
 
   return (
+
+    <>
     <div className="w-full bg-white p-8">
       <div className="flex">
         <div>
@@ -125,6 +142,9 @@ const Login = () => {
       {/* Toast Notifications */}
       <ToastContainer />
     </div>
+    
+    <button onClick={handleLogin}>Login</button>
+    </>
   );
 };
 
