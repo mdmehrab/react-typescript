@@ -28,14 +28,14 @@ const Login = () => {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/users/login`,
         loginCredentials,
-        { withCredentials: true }
+        { withCredentials: true } // Ensure cookies are included in the request
       );
 
       if (response && response?.data) {
         // Set the access token in a cookie
+        toast.success(response?.data?.message);
 
-        toast.success("Login successful!");
-        console.log(response?.data);
+    
       }
 
       setLoginCredetials({

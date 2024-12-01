@@ -1,6 +1,7 @@
 import heroImg from "../assets/hero.png";
 
 export default function HeroBanner() {
+
   return (
     <div className="grid grid-cols-1 relative h-96">
       <div className="absolute top-1/2 left-24 transform -translate-y-1/2 bg-white p-7 w-[40%] shadow-lg">
