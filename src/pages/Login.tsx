@@ -7,7 +7,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
-import { setAccessToken } from "../features/auth/authSlice";
+import { setAccessToken, setUser } from "../features/auth/authSlice";
 
 const Login = () => {
   const [loginCredentials, setLoginCredetials] = useState({
@@ -30,6 +30,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
+      // Make the login request
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/users/login`,
         loginCredentials,
@@ -45,8 +46,20 @@ const Login = () => {
         if (accessToken) {
           dispatch(setAccessToken(accessToken));
         }
+
+        // Fetch the user profile data
+        const profileResponse = await axios.get(
+          `${import.meta.env.VITE_API_URL}/user/profile`,
+          { withCredentials: true } // Ensure cookies are included in the request
+        );
+
+        if (profileResponse && profileResponse?.data) {
+          // Dispatch the user data to Redux
+          dispatch(setUser(profileResponse.data));
+        }
       }
 
+      // Reset login credentials after successful login
       setLoginCredetials({
         email: "",
         password: "",

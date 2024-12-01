@@ -129,6 +129,12 @@ const Toolbar = (): JSX.Element => {
     (state: RootState) => state.auth.access_token
   );
 
+  const profileImage = useSelector(
+    (state: RootState) => state.auth.user?.profileImg 
+  );
+
+  console.log(profileImage)
+
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -184,11 +190,19 @@ const Toolbar = (): JSX.Element => {
               <MdOutlineShoppingCart />
             </div>
             <div className="flex gap-2">
-              <button
+            <button
                 className="border border-black px-3 py-1"
                 onClick={() => navigate(accessToken ? "/profile" : "/login")}
               >
-                {accessToken ? "User Profile" : "Log in"}
+                {accessToken ? (
+                  <img
+                    src={profileImage || ""}
+                    alt="profile"
+                    className="w-6 h-6 rounded-full"
+                  />
+                ) : (
+                  "Log in"
+                )}
               </button>
 
               <button
