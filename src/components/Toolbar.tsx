@@ -12,6 +12,8 @@ import {
 } from "@material-tailwind/react";
 import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { RootState } from "../features/store/store";
 
 type NestedMenuItem = {
   title: string;
@@ -33,9 +35,9 @@ function NavListMenu(): JSX.Element {
       key={key}
       title={title}
       onClick={() => console.log(title)}
-      placeholder="" // Add a placeholder prop
-      onPointerEnterCapture={() => {}} // Provide empty functions if not needed
-      onPointerLeaveCapture={() => {}} // Provide empty functions if not needed
+      placeholder=""
+      onPointerEnterCapture={() => {}}
+      onPointerLeaveCapture={() => {}}
     >
       {title}
     </MenuItem>
@@ -122,12 +124,15 @@ function NavListMenu(): JSX.Element {
 
 const Toolbar = (): JSX.Element => {
   const [showNavbar, setShowNavbar] = useState(false);
+  // state access
+  const accessToken = useSelector(
+    (state: RootState) => state.auth.access_token
+  );
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
-      // Hide navbar when scroll position is 500px or more
       if (window.scrollY >= 300) {
         setShowNavbar(true);
       } else {
@@ -137,7 +142,6 @@ const Toolbar = (): JSX.Element => {
 
     window.addEventListener("scroll", handleScroll);
 
-    // Cleanup the event listener on unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
@@ -160,7 +164,7 @@ const Toolbar = (): JSX.Element => {
             <div className="w-[10%]">
               <span className="text-xl font-bold">Udemy</span>
             </div>
-            <NavListMenu /> {/* Blocks dropdown */}
+            <NavListMenu />
             <div className="w-[80%] flex items-center gap-2 relative">
               <span className="absolute right-3">
                 <CiSearch />
@@ -180,7 +184,13 @@ const Toolbar = (): JSX.Element => {
               <MdOutlineShoppingCart />
             </div>
             <div className="flex gap-2">
-              <button className="border border-black px-3 py-1" onClick={() => navigate('/login')}>Log in</button>
+              <button
+                className="border border-black px-3 py-1"
+                onClick={() => navigate(accessToken ? "/profile" : "/login")}
+              >
+                {accessToken ? "User Profile" : "Log in"}
+              </button>
+
               <button
                 className="text-white px-3 py-1 bg-black"
                 onClick={handleSignUp}

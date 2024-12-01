@@ -5,12 +5,17 @@ import { FaApple } from "react-icons/fa6";
 import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
+import { setAccessToken } from "../features/auth/authSlice";
 
 const Login = () => {
   const [loginCredentials, setLoginCredetials] = useState({
     email: "",
     password: "",
   });
+
+  const dispatch = useDispatch();
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,14 +33,18 @@ const Login = () => {
       const response = await axios.post(
         `${import.meta.env.VITE_API_URL}/users/login`,
         loginCredentials,
-        { withCredentials: true } // Ensure cookies are included in the request
+        { withCredentials: true }
       );
 
       if (response && response?.data) {
         // Set the access token in a cookie
         toast.success(response?.data?.message);
 
-    
+        const accessToken = Cookies.get("access_token");
+
+        if (accessToken) {
+          dispatch(setAccessToken(accessToken));
+        }
       }
 
       setLoginCredetials({

@@ -6,13 +6,8 @@ import CourseDetails from "./components/CourseDetails";
 import UserTable from "./components/UserTable";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
-import Cookies from 'js-cookie'; // Import js-cookie for cookie management
 
 function App() {
-
-      // Check and log the cookie
-      const accessToken = Cookies.get('access_token');
-      console.log('Access Token:', accessToken); // Log the access token (you can now use it in your frontend)
   return (
     <>
       <div className="w-full">
