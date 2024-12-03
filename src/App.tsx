@@ -6,8 +6,12 @@ import CourseDetails from "./components/CourseDetails";
 import UserTable from "./components/UserTable";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import { useSelector } from "react-redux";
+import { RootState } from "./features/store/store";
 
 function App() {
+  const role = useSelector((state: RootState) => state.auth.user?.roles);
+
   return (
     <>
       <div className="w-full">
@@ -18,8 +22,17 @@ function App() {
         <Route path="/courses/:courseId" element={<CourseDetails />} />
         <Route path="/signup" element={<Register />} />
         <Route path="/login" element={<Login />} />
-        {/* Conditionally render UserTable based on access_token */}
-        <Route path="/approved/user-table" element={<UserTable />} />
+        {/* Conditionally render UserTable based on role */}
+        <Route
+          path="/approved/user-table"
+          element={
+            role === "ADMIN" ? (
+              <UserTable />
+            ) : (
+              <p>Only admin can see this page!</p>
+            )
+          }
+        />
       </Routes>
 
       <Footer />
