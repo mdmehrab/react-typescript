@@ -1,76 +1,75 @@
+import { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
-
-const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90 },
-  { field: "firstName", headerName: "First name", width: 150 },
-  { field: "lastName", headerName: "Last name", width: 150 },
-
-  {
-    field: "fullName",
-    headerName: "Full name",
-    description: "This column has a value getter and is not sortable.",
-    sortable: false,
-    width: 180,
-    valueGetter: (value, row) => `${row.firstName || ""} ${row.lastName || ""}`,
-  },
-  {
-    field: "age",
-    headerName: "Age",
-    type: "number",
-    width: 110,
-  },
-
-  {
-    field: "location",
-    headerName: "Location",
-
-    width: 180,
-  },
-
-  {
-    field: "country",
-    headerName: "Country",
-
-    width: 130,
-  },
-
-  {
-    field: "approval status",
-    headerName: "Approval Status",
-
-    width: 120,
-  },
-
-  {
-    field: "action",
-    headerName: "Action",
-
-    width: 140,
-  },
-];
-
-const rows = [
-  { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
-  { id: 2, lastName: "Lannister", firstName: "Cersei", age: 42 },
-  { id: 3, lastName: "Lannister", firstName: "Jaime", age: 45 },
-  { id: 4, lastName: "Stark", firstName: "Arya", age: 16 },
-  { id: 5, lastName: "Targaryen", firstName: "Daenerys", age: 20 },
-  { id: 6, lastName: "Melisandre", firstName: null, age: 150 },
-  { id: 7, lastName: "Clifford", firstName: "Ferrara", age: 44 },
-  { id: 8, lastName: "Frances", firstName: "Rossini", age: 36 },
-  { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
-];
-
-const paginationModel = { page: 0, pageSize: 5 };
+import axios from "axios";
 
 const UserTable = () => {
+  const [allUsers, setAllUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  const columns: GridColDef[] = [
+    { field: "_id", headerName: "ID", width: 220 },
+    { field: "username", headerName: "Username", width: 200 },
+    { field: "email", headerName: "Email", width: 250 },
+    { field: "roles", headerName: "Roles", width: 150 },
+    { field: "mobileNumber", headerName: "Mobile Number", width: 150 },
+    { field: "gender", headerName: "Gender", width: 100 },
+    { field: "country", headerName: "Country", width: 150 },
+    {
+      field: "isApproved",
+      headerName: "Is Approved",
+      width: 150,
+      type: "boolean",
+    },
+    { field: "createdAt", headerName: "Created At", width: 200 },
+    { field: "updatedAt", headerName: "Updated At", width: 200 },
+    {
+      field: "profileImg",
+      headerName: "Profile Image",
+      width: 200,
+      renderCell: (params) => (
+        <img
+          src={params.value}
+          alt="Profile"
+          style={{ width: 50, height: 50 }}
+        />
+      ),
+    },
+  ];
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_API_URL}/user/all-users`,
+          { withCredentials: true }
+        );
+        setAllUsers(response.data);
+        setLoading(false);
+      } catch (err) {
+        if (err instanceof Error) {
+          setError(err.message);
+        }
+        setLoading(false);
+      }
+    };
+
+    fetchUsers();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error}</p>;
+
   return (
     <Paper className="mx-auto mt-10" sx={{ height: 400, width: "100%" }}>
       <DataGrid
-        rows={rows}
+        rows={allUsers}
         columns={columns}
-        initialState={{ pagination: { paginationModel } }}
+        getRowId={(row) => row._id} // Ensure row id is fetched from _id
+        initialState={{
+          pagination: { paginationModel: { page: 0, pageSize: 5 } },
+        }}
         pageSizeOptions={[5, 10]}
         checkboxSelection
       />
