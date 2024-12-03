@@ -1,142 +1,126 @@
-import { useState, useEffect } from "react";
-import { skillsList } from "../data"; 
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Course } from "../types/course.interface";
 
 function CoursesExample() {
-  const [selectedSkills, setSelectedSkills] = useState<any[]>([]); 
-  const [activeTab, setActiveTab] = useState<number | null>(null);
-  const [filteredItems, setFilteredItems] = useState<any[]>([]);
+  const [courses, setCourses] = useState<Course[]>([]);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
-  // fetch courses 
-  const [courses, setCourses] = useState([])
-
-  console.log(import.meta.env.VITE_API_URL)
-
-
-  useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/courses/all-courses`); 
-        if (!response.ok) {
-          throw new Error('Failed to fetch courses');
+  const fetchCourses = async () => {
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/courses/all-courses`,
+        {
+          method: "GET",
+          credentials: "include",
         }
-        const data = await response.json();
-        setCourses(data);  
-      } catch (error) {
-        console.error('Error fetching courses:', error);
+      );
+
+ 
+      if (!response.ok) {
+        throw new Error("Failed to fetch courses");
       }
-    };
+      
+      const data: Course[] = await response.json();
 
-    fetchCourses();  
-  }, []); 
-
-
-  console.log(courses)
-
-  const handleBtn = (id: number) => {
-    const selectedSkill = skillsList.find((skill) => skill.id === activeTab);
-
-    if (selectedSkill) {
-      const filteredCards = selectedSkill.cardItems.filter(
-        (card) => card.id === id
-      );
-
-      setSelectedSkills(
-        filteredCards.length ? filteredCards : selectedSkill.cardItems
-      );
+      setCourses(data);
+      setLoading(false);
+    } catch (err) {
+      setError((err as Error).message);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    const initialSkill = skillsList.find(
-      (item) => item.items?.some((ele) => ele.text === "Web Development") 
-    );
-    if (initialSkill) {
-      setActiveTab(initialSkill.id); 
-      setFilteredItems(initialSkill.items || []); 
-      setSelectedSkills(initialSkill.cardItems || []); 
-    }
+    fetchCourses();
   }, []);
 
+  if (loading) {
+    return <div className="text-center text-xl py-10">Loading...</div>;
+  }
+
+  if (error) {
+    return <div className="text-center text-red-500 py-10">Error: {error}</div>;
+  }
+
   return (
-    <>
-      <div className="bg-white p-4">
-        <div className="mx-4 my-6">
-          <p className="font-bold text-3xl">
-            All the skills you need in one place
-          </p>
-          <p className="text-gray-600 my-2">
-            From critical skills to technical topics, Udemy supports your
-            professional development.
-          </p>
-        </div>
-        {/* Tabs Section */}
-        <div className="tabs flex space-x-4 border-b mb-4">
-          {skillsList.map((item) => (
-            <button
-              key={item.id}
-              className={`px-4 py-2 ${
-                activeTab === item.id
-                  ? "border-b-2 border-blue-500 text-blue-500"
-                  : "text-red-500"
-              }`}
-              onClick={() => handleTabClick(item.id)}
-            >
-              {item.title}
-            </button>
-          ))}
-        </div>
-
-        {/* Filter Buttons Section */}
-        <div>
-          {filteredItems.map((ele) => (
-            <button onClick={() => handleBtn(ele.id)} key={ele.id}>
-              <span className="mx-3 text-red-400">{ele.text}</span>
-            </button>
-          ))}
-        </div>
-
-        {/* Cards Section */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4 bg-gray-50">
-          {courses?.map((cardItem) => (
-            <Link
-              to={`/courses/${cardItem._id}`}
-              key={cardItem._id}
-              className="card p-4 border rounded-lg shadow"
-            >
-              <img
-                src={cardItem.imageUrl}
-                alt={cardItem.title}
-                className="w-full h-40 object-cover rounded"
-              />
-              <h3 className="text-lg font-bold mt-2">{cardItem.title}</h3>
-              {/* <p className="text-gray-500">{cardItem.subTitle}</p> */}
-              {/* <p className="text-sm text-gray-600">{cardItem.author}</p> */}
-              <div className="flex items-center">
-                {/* <div>{cardItem.rating}</div> */}
-                {/* <div className="ml-2">{cardItem.ratingCounter}</div> */}
+    <div className="bg-gray-100 p-8">
+      <h2 className="text-3xl font-bold text-center mb-6">
+        Explore Our Courses
+      </h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {courses.map((course) => (
+          <div
+            key={course._id}
+            className="bg-white rounded-lg shadow-md overflow-hidden"
+          >
+            {/* Course Image */}
+            <img
+              src={course.imageUrl}
+              alt={course.title}
+              className="w-full h-48 object-cover"
+            />
+            <div className="p-4">
+              {/* Title */}
+              <h3 className="text-lg font-bold text-gray-800 mb-2">
+                {course.title}
+              </h3>
+              {/* Description */}
+              <p className="text-gray-600 text-sm mb-3">
+                {course.description.slice(0, 80)}...
+              </p>
+              {/* Author */}
+              <div className="flex items-center mb-3">
+                <img
+                  src={course.user.profileImg}
+                  alt={course.user.username}
+                  className="w-10 h-10 rounded-full object-cover mr-3"
+                />
+                <div>
+                  <p className="text-sm font-medium text-gray-800">
+                    {course.user.username}
+                  </p>
+                  <p className="text-xs text-gray-500">{course.user.country}</p>
+                </div>
               </div>
-              <div className="text-lg font-semibold">
-                {/* {cardItem.currentPrice}{" "} */}
-                <span className="line-through text-gray-500">
-                  {/* {cardItem.beforePrice} */}
+              {/* Price */}
+              <div className="mb-3">
+                <span className="text-xl font-semibold text-green-600">
+                  ${course.price.currentPrice}
+                </span>{" "}
+                <span className="text-sm line-through text-gray-500">
+                  ${course.price.originalPrice}
                 </span>
               </div>
-              {/* {cardItem.mostSell && (
-                <div className="text-green-600 font-bold">
-                  {cardItem.mostSell}
-                </div>
-              )} */}
+              {/* Rating */}
+              <div className="flex items-center mb-3">
+                <span className="text-yellow-500">&#9733;</span>
+                <span className="ml-2 text-gray-800">{course.rating}</span>
+              </div>
+              {/* Tags */}
+              <div className="flex flex-wrap gap-2">
+                {course.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="bg-gray-200 text-sm text-gray-800 px-2 py-1 rounded"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+            {/* Link */}
+            <Link
+              to={`/courses/${course._id}`}
+              className="block bg-blue-600 text-white text-center py-2 font-semibold hover:bg-blue-700"
+            >
+              View Details
             </Link>
-          ))}
-        </div>
-        <div>
-          <button className="border border-black p-3 my-10 hover:bg-gray-200 font-bold">
-            Show All Courses
-          </button>
-        </div>
+          </div>
+        ))}
       </div>
-    </>
+    </div>
   );
 }
 
