@@ -8,6 +8,26 @@ const UserTable = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
+  // handleApprovedByAdmin
+  const handleApprovedByAdmin = async (userId: string) => {
+    try {
+      const response = await axios.patch(
+        `${import.meta.env.VITE_API_URL}/users/approve/${userId}`,
+        {
+          withCredentials: true,
+        }
+      );
+      
+      if(response) {
+        alert(`This user: ${userId} has been approved by Admin`)
+      }else {
+        alert('Something went wrong!')
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   const columns: GridColDef[] = [
     { field: "_id", headerName: "ID", width: 220 },
     { field: "username", headerName: "Username", width: 200 },
@@ -33,7 +53,13 @@ const UserTable = () => {
         const date = new Date(params.value);
         return (
           <div>
-            {`${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`}
+            {`${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`} -{" "}
+            <button
+              className="bg-green-200 text-black p-2 rounded-md text-xs"
+              onClick={() => handleApprovedByAdmin(params.row._id)}
+            >
+              Approved
+            </button>
           </div>
         );
       },
