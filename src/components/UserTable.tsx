@@ -20,10 +20,38 @@ const UserTable = () => {
       field: "isApproved",
       headerName: "Is Approved",
       width: 150,
-      type: "boolean",
+      renderCell: (params) => (
+        <span>{params.value ? <span>✔️</span> : <span>❌</span>}</span>
+      ),
     },
-    { field: "createdAt", headerName: "Created At", width: 200 },
-    { field: "updatedAt", headerName: "Updated At", width: 200 },
+
+    {
+      field: "createdAt",
+      headerName: "Created At",
+      width: 200,
+      renderCell: (params) => {
+        const date = new Date(params.value);
+        return (
+          <div>
+            {`${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`}
+          </div>
+        );
+      },
+    },
+
+    {
+      field: "updatedAt",
+      headerName: "Updated At",
+      width: 200,
+      renderCell: (params) => {
+        const date = new Date(params.value);
+        return (
+          <div>
+            {`${date.getDate()}.${date.getMonth()}.${date.getFullYear()}`}
+          </div>
+        );
+      },
+    },
     {
       field: "profileImg",
       headerName: "Profile Image",
@@ -62,18 +90,21 @@ const UserTable = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <Paper className="mx-auto mt-10" sx={{ height: 400, width: "100%" }}>
-      <DataGrid
-        rows={allUsers}
-        columns={columns}
-        getRowId={(row) => row._id} // Ensure row id is fetched from _id
-        initialState={{
-          pagination: { paginationModel: { page: 0, pageSize: 5 } },
-        }}
-        pageSizeOptions={[5, 10]}
-        checkboxSelection
-      />
-    </Paper>
+    <div className="p-10">
+      <h2 className="text-2xl text-center">User Approved Table</h2>
+      <Paper className="mx-auto mt-10" sx={{ height: 400, width: "100%" }}>
+        <DataGrid
+          rows={allUsers}
+          columns={columns}
+          getRowId={(row) => row._id}
+          initialState={{
+            pagination: { paginationModel: { page: 0, pageSize: 5 } },
+          }}
+          pageSizeOptions={[5, 10]}
+          checkboxSelection
+        />
+      </Paper>
+    </div>
   );
 };
 
