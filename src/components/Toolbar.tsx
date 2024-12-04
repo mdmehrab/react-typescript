@@ -14,7 +14,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../features/store/store";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
 
 type NestedMenuItem = {
   title: string;
@@ -186,7 +186,11 @@ const Toolbar = (): JSX.Element => {
 
           <div className="flex items-center gap-8 w-[45%] justify-end">
             <div className="text-sm">Udemy Business</div>
-            {role === "ADMIN" && <Link to="/approved/user-table" className="text-sm">Approved User</Link>}
+            {role === "ADMIN" && (
+              <Link to="/approved/user-table" className="text-sm">
+                Approved User
+              </Link>
+            )}
             <div>
               <MdOutlineShoppingCart />
             </div>
@@ -213,9 +217,9 @@ const Toolbar = (): JSX.Element => {
                 Sign up
               </button>
             </div>
-            <div className="border border-black px-2 py-2">
-              <GrLanguage />
-            </div>
+           {accessToken && <div className="border border-black px-2 py-2">
+             Logout
+            </div>}
           </div>
         </div>
       </div>
