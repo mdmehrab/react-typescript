@@ -14,6 +14,7 @@ import { ChevronDownIcon, ChevronUpIcon } from "@heroicons/react/24/outline";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../features/store/store";
+import {Link} from 'react-router-dom'
 
 type NestedMenuItem = {
   title: string;
@@ -130,10 +131,10 @@ const Toolbar = (): JSX.Element => {
   );
 
   const profileImage = useSelector(
-    (state: RootState) => state.auth.user?.profileImg 
+    (state: RootState) => state.auth.user?.profileImg
   );
 
-  console.log(profileImage)
+  const role = useSelector((state: RootState) => state.auth.user?.roles);
 
   const navigate = useNavigate();
 
@@ -185,12 +186,12 @@ const Toolbar = (): JSX.Element => {
 
           <div className="flex items-center gap-8 w-[45%] justify-end">
             <div className="text-sm">Udemy Business</div>
-            <div className="text-sm">Teach on Udemy</div>
+            {role === "ADMIN" && <Link to="/approved/user-table" className="text-sm">Approved User</Link>}
             <div>
               <MdOutlineShoppingCart />
             </div>
             <div className="flex gap-2">
-            <button
+              <button
                 className="border border-black px-3 py-1"
                 onClick={() => navigate(accessToken ? "/profile" : "/login")}
               >

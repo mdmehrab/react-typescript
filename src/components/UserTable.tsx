@@ -32,7 +32,7 @@ const UserTable = () => {
         <img
           src={params.value}
           alt="Profile"
-          style={{ width: 50, height: 50 }}
+          style={{ width: 30, height: 30, borderRadius: "50%" }}
         />
       ),
     },
