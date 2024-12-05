@@ -2,31 +2,38 @@ import { useEffect, useState } from "react";
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import Paper from "@mui/material/Paper";
 import axios from "axios";
+import {UserType} from '../types/user'
 
 const UserTable = () => {
-  const [allUsers, setAllUsers] = useState([]);
+  const [allUsers, setAllUsers] = useState<UserType[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   // handleApprovedByAdmin
-  const handleApprovedByAdmin = async (userId: string) => {
-    try {
-      const response = await axios.patch(
-        `${import.meta.env.VITE_API_URL}/users/approve/${userId}`,
-        {
-          withCredentials: true,
-        }
-      );
-      
-      if(response) {
-        alert(`This user: ${userId} has been approved by Admin`)
-      }else {
-        alert('Something went wrong!')
+const handleApprovedByAdmin = async (userId: string) => {
+  try {
+    const response = await axios.patch(
+      `${import.meta.env.VITE_API_URL}/users/approve/${userId}`,
+      {
+        withCredentials: true,
       }
-    } catch (err) {
-      console.log(err);
+    );
+
+    if (response) {
+      setAllUsers((prevUsers) =>
+        prevUsers.map((user) =>
+          user._id === userId ? { ...user, isApproved: true } : user
+        )
+      );
+      alert(`This user: ${userId} has been approved by Admin`);
+    } else {
+      alert("Something went wrong!");
     }
-  };
+  } catch (err) {
+    console.log(err);
+  }
+};
+
 
   const columns: GridColDef[] = [
     { field: "_id", headerName: "ID", width: 220 },
