@@ -1,5 +1,4 @@
 import { MdOutlineShoppingCart } from "react-icons/md";
-import { GrLanguage } from "react-icons/gr";
 import { CiSearch } from "react-icons/ci";
 import { useEffect, useState } from "react";
 import {
@@ -15,6 +14,9 @@ import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState } from "../features/store/store";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import Cookies from "js-cookie";
+import { setAccessToken, setUser } from "../features/auth/authSlice";
 
 type NestedMenuItem = {
   title: string;
@@ -137,6 +139,7 @@ const Toolbar = (): JSX.Element => {
   const role = useSelector((state: RootState) => state.auth.user?.roles);
 
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -157,6 +160,20 @@ const Toolbar = (): JSX.Element => {
   // replace route
   const handleSignUp = () => {
     navigate("/signup");
+  };
+
+
+  // LOGOUT 
+  const handleLogout = () => {
+    // Clear cookies
+    Cookies.remove("access_token");
+
+    // Reset Redux state
+    dispatch(setAccessToken(null));
+    dispatch(setUser(null));
+
+    // Redirect to login if needed
+    navigate("/login");
   };
 
   return (
@@ -217,9 +234,14 @@ const Toolbar = (): JSX.Element => {
                 Sign up
               </button>
             </div>
-           {accessToken && <div className="border border-black px-2 py-2">
-             Logout
-            </div>}
+            {accessToken && (
+              <button
+                className="border border-black px-2 py-2"
+                onClick={handleLogout}
+              >
+                Logout
+              </button>
+            )}
           </div>
         </div>
       </div>
