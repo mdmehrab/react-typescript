@@ -8,6 +8,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { useDispatch } from "react-redux";
 import Cookies from "js-cookie";
 import { setAccessToken, setUser } from "../features/auth/authSlice";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [loginCredentials, setLoginCredetials] = useState({
@@ -15,7 +16,10 @@ const Login = () => {
     password: "",
   });
 
+
+
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -50,7 +54,7 @@ const Login = () => {
         // Fetch the user profile data
         const profileResponse = await axios.get(
           `${import.meta.env.VITE_API_URL}/user/profile`,
-          { withCredentials: true } // Ensure cookies are included in the request
+          { withCredentials: true }
         );
 
         if (profileResponse && profileResponse?.data) {
@@ -64,6 +68,8 @@ const Login = () => {
         email: "",
         password: "",
       });
+
+      navigate('/')
     } catch (err) {
       toast.error("Login failed. Please check your credentials.");
       console.log(err);

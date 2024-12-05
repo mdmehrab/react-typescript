@@ -185,9 +185,9 @@ const Toolbar = (): JSX.Element => {
       >
         <div className="flex justify-between items-center p-3">
           <div className="flex items-center gap-3 w-[55%]">
-            <div className="w-[10%]">
+            <Link to="/" className="w-[10%]">
               <span className="text-xl font-bold">Udemy</span>
-            </div>
+            </Link>
             <NavListMenu />
             <div className="w-[80%] flex items-center gap-2 relative">
               <span className="absolute right-3">

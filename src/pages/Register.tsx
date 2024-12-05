@@ -12,7 +12,58 @@ const Register = () => {
     mobileNumber: "",
     gender: "male",
     country: "",
+    profileImg: "",
   });
+  const [file, setFile] = useState<File | null>(null);
+  const [uploadProgress, setUploadProgress] = useState(0);
+  const [isUploading, setIsUploading] = useState(false);
+  const [imageUploaded, setImageUploaded] = useState(false); // To track if image upload is complete
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setFile(file);
+      setImageUploaded(false); // Reset on new file selection
+      setIsUploading(true); // Start uploading
+      uploadToCloudinary(file); // Trigger image upload
+    }
+  };
+
+  // Cloudinary image upload function
+  const uploadToCloudinary = async (file: File) => {
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append("upload_preset", "udemy_clone"); // Replace with your upload preset
+    formData.append("cloud_name", "dcyr3emxz"); // Replace with your cloud name
+
+    try {
+      const response = await axios.post(
+        "https://api.cloudinary.com/v1_1/dcyr3emxz/image/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+          onUploadProgress: (progressEvent) => {
+            const percent = Math.round(
+              (progressEvent.loaded * 100) / progressEvent.total!
+            );
+            setUploadProgress(percent); // Update upload progress
+          },
+        }
+      );
+      setImageUploaded(true); // Mark as uploaded
+      setFormData((prevData) => ({
+        ...prevData,
+        profileImg: response.data.secure_url, // Set image URL
+      }));
+      setIsUploading(false); // Stop uploading
+    } catch (error) {
+      toast.error("Image upload failed!");
+      setIsUploading(false);
+      throw error;
+    }
+  };
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -25,17 +76,20 @@ const Register = () => {
   };
 
   const handleSubmit = async () => {
-    try {
-      const response = await axios.post(
-        `${import.meta.env.VITE_API_URL}/users/register`,
-        formData
-      );
-      if (response.status === 201) {
-        toast.success("Registration successful!");
+    if (imageUploaded) {
+      try {
+        const response = await axios.post(
+          `${import.meta.env.VITE_API_URL}/users/register`,
+          formData
+        );
+        if (response.status === 201) {
+          toast.success("Registration successful!");
+        }
+      } catch (error) {
+        toast.error("Registration failed!");
       }
-    } catch (error) {
-      const errorMessage = "Something went wrong!";
-      toast.error(errorMessage);
+    } else {
+      toast.error("Please upload a profile image.");
     }
   };
 
@@ -50,9 +104,8 @@ const Register = () => {
         </div>
 
         <div className="w-full max-w-md mx-auto mt-14">
-          <p className="text-lg font-semibold mb-4">
-            Sign up and start learning
-          </p>
+          <p className="text-lg font-semibold mb-4">Sign up and start learning</p>
+
           <div className="mb-4">
             <input
               placeholder="Full name"
@@ -60,7 +113,7 @@ const Register = () => {
               name="username"
               value={formData.username}
               onChange={handleChange}
-              className="w-full p-4 border border-black  placeholder-black font-bold text-xs"
+              className="w-full p-4 border border-black placeholder-black font-bold text-xs"
               required
             />
           </div>
@@ -72,7 +125,7 @@ const Register = () => {
               name="email"
               value={formData.email}
               onChange={handleChange}
-              className="w-full p-4 border  border-black  placeholder-black font-bold text-xs"
+              className="w-full p-4 border border-black placeholder-black font-bold text-xs"
             />
           </div>
 
@@ -83,7 +136,7 @@ const Register = () => {
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className="w-full p-4 border border-black  placeholder-black font-bold text-xs"
+              className="w-full p-4 border border-black placeholder-black font-bold text-xs"
               required
             />
           </div>
@@ -95,7 +148,7 @@ const Register = () => {
               name="mobileNumber"
               value={formData.mobileNumber}
               onChange={handleChange}
-              className="w-full p-2 border border-black  placeholder-black font-bold text-xs"
+              className="w-full p-2 border border-black placeholder-black font-bold text-xs"
               required
             />
           </div>
@@ -106,7 +159,7 @@ const Register = () => {
               name="gender"
               value={formData.gender}
               onChange={handleChange}
-              className="w-full p-2 border border-black  placeholder-black text-xs bg-white"
+              className="w-full p-2 border border-black placeholder-black text-xs bg-white"
             >
               <option value="male">Male</option>
               <option value="female">Female</option>
@@ -121,29 +174,48 @@ const Register = () => {
               name="country"
               value={formData.country}
               onChange={handleChange}
-              className="w-full p-2 border border-black  placeholder-black font-bold text-xs "
+              className="w-full p-2 border border-black placeholder-black font-bold text-xs"
               required
             />
           </div>
 
           <div>
-            <button
-              className="bg-purple-500 font-bold text-white p-3  w-full"
-              onClick={handleSubmit}
-            >
-              Sign up
-            </button>
+            <div>Profile Image</div>
+            <div className="relative my-4">
+              <label
+                htmlFor="fileInput"
+                className="bg-gray-200 text-black px-4 py-2 rounded cursor-pointer"
+              >
+                Choose File
+              </label>
+              <input
+                type="file"
+                id="fileInput"
+                className="hidden"
+                onChange={handleFileChange}
+              />
+            </div>
+
+            {isUploading ? (
+              <div className="mb-4 text-center">
+                <p>Uploading... {uploadProgress}%</p>
+              </div>
+            ) : imageUploaded ? (
+              <button
+                className="bg-purple-500 font-bold text-white p-3 w-full"
+                onClick={handleSubmit}
+              >
+                Sign up
+              </button>
+            ) : (
+              <p>Upload your profile image to continue.</p>
+            )}
+
             <div className="mt-6 flex justify-center">
               <p className="text-xs ">
                 By signing up, you agree to our{" "}
-                <button className="text-purple-900  underline">
-                  Terms of Use
-                </button>{" "}
-                and{" "}
-                <button className="text-purple-900 underline">
-                  Privacy Policy
-                </button>
-                .
+                <button className="text-purple-900 underline">Terms of Use</button> and{" "}
+                <button className="text-purple-900 underline">Privacy Policy</button>.
               </p>
             </div>
             <div className="mt-8 flex justify-center">
