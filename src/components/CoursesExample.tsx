@@ -2,18 +2,16 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Course } from "../types/course.interface";
 import { FaRegTrashCan } from "react-icons/fa6";
-import {useSelector} from 'react-redux'
+import { useSelector } from "react-redux";
 import { RootState } from "../features/store/store";
-
+import axios from "axios";
 
 function CoursesExample() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
-
-  const userId = useSelector((state: RootState) => state?.auth?.user?._id)
-
+  const userId = useSelector((state: RootState) => state?.auth?.user?._id);
 
   const fetchCourses = async () => {
     try {
@@ -51,6 +49,32 @@ function CoursesExample() {
     return <div className="text-center text-red-500 py-10">Error: {error}</div>;
   }
 
+  // delete course
+
+  const handleDeleteCourse = async (courseId: string) => {
+    if (!courseId) return;
+
+    try {
+      const res = await axios.delete(
+        `${import.meta.env.VITE_API_URL}/courses/delete/${courseId}`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      if (res.data) {
+        setCourses((prevCourses) =>
+          prevCourses.filter((course) => course._id !== courseId)
+        );
+        alert("Course deleted successful!");
+      } else {
+        alert("something went wrong!");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="bg-gray-100 p-8">
       <h2 className="text-3xl font-bold text-center mb-6">
@@ -74,9 +98,14 @@ function CoursesExample() {
                 <h3 className="text-lg font-bold text-gray-800 mb-2">
                   {course.title}
                 </h3>
-                {userId === course.user._id && <span className="text-red-400 cursor-pointer">
-                  <FaRegTrashCan />
-                </span>}
+                {userId === course.user._id && (
+                  <span
+                    className="text-red-400 cursor-pointer"
+                    onClick={() => handleDeleteCourse(course._id)}
+                  >
+                    <FaRegTrashCan />
+                  </span>
+                )}
               </div>
               {/* Description */}
               <p className="text-gray-600 text-sm mb-3">
