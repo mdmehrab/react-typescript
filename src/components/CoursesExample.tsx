@@ -1,11 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Course } from "../types/course.interface";
+import { FaRegTrashCan } from "react-icons/fa6";
+import {useSelector} from 'react-redux'
+import { RootState } from "../features/store/store";
+
 
 function CoursesExample() {
   const [courses, setCourses] = useState<Course[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
+
+
+  const userId = useSelector((state: RootState) => state?.auth?.user?._id)
+
 
   const fetchCourses = async () => {
     try {
@@ -17,11 +25,10 @@ function CoursesExample() {
         }
       );
 
- 
       if (!response.ok) {
         throw new Error("Failed to fetch courses");
       }
-      
+
       const data: Course[] = await response.json();
 
       setCourses(data);
@@ -62,10 +69,15 @@ function CoursesExample() {
               className="w-full h-48 object-cover"
             />
             <div className="p-4">
-              {/* Title */}
-              <h3 className="text-lg font-bold text-gray-800 mb-2">
-                {course.title}
-              </h3>
+              <div className="flex items-center justify-between">
+                {/* Title */}
+                <h3 className="text-lg font-bold text-gray-800 mb-2">
+                  {course.title}
+                </h3>
+                {userId === course.user._id && <span className="text-red-400 cursor-pointer">
+                  <FaRegTrashCan />
+                </span>}
+              </div>
               {/* Description */}
               <p className="text-gray-600 text-sm mb-3">
                 {course.description.slice(0, 80)}...
