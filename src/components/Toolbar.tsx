@@ -202,7 +202,8 @@ const Toolbar = (): JSX.Element => {
           </div>
 
           <div className="flex items-center gap-8 w-[45%] justify-end">
-            <div className="text-sm">Udemy Business</div>
+            {accessToken &&    <Link to="/create-course" className="text-sm">Create Course</Link>}
+         
             {role === "ADMIN" && (
               <Link to="/approved/user-table" className="text-sm">
                 Approved User

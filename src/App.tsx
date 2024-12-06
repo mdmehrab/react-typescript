@@ -4,6 +4,7 @@ import Toolbar from "./components/Toolbar";
 import Home from "./pages/Home";
 import CourseDetails from "./components/CourseDetails";
 import UserTable from "./components/UserTable";
+import CreateCorse from "./components/CreateCorse";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import { useSelector } from "react-redux";
@@ -33,6 +34,8 @@ function App() {
             )
           }
         />
+
+        <Route path="/create-course" element={<CreateCorse />} />
       </Routes>
 
       <Footer />

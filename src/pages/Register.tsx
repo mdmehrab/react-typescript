@@ -14,7 +14,8 @@ const Register = () => {
     country: "",
     profileImg: "",
   });
-  const [file, setFile] = useState<File | null>(null);
+
+  const [_file, setFile] = useState<File | null>(null);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false); // To track if image upload is complete
