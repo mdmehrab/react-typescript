@@ -2,6 +2,7 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -19,7 +20,7 @@ const Register = () => {
   const [uploadProgress, setUploadProgress] = useState(0);
   const [isUploading, setIsUploading] = useState(false);
   const [imageUploaded, setImageUploaded] = useState(false); // To track if image upload is complete
-
+  const navigate = useNavigate();
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -28,6 +29,10 @@ const Register = () => {
       setIsUploading(true); // Start uploading
       uploadToCloudinary(file); // Trigger image upload
     }
+  };
+
+  const handleForgetPassword = () => {
+    navigate("/forget-password");
   };
 
   // Cloudinary image upload function
@@ -105,7 +110,9 @@ const Register = () => {
         </div>
 
         <div className="w-full max-w-md mx-auto mt-14">
-          <p className="text-lg font-semibold mb-4">Sign up and start learning</p>
+          <p className="text-lg font-semibold mb-4">
+            Sign up and start learning
+          </p>
 
           <div className="mb-4">
             <input
@@ -215,8 +222,14 @@ const Register = () => {
             <div className="mt-6 flex justify-center">
               <p className="text-xs ">
                 By signing up, you agree to our{" "}
-                <button className="text-purple-900 underline">Terms of Use</button> and{" "}
-                <button className="text-purple-900 underline">Privacy Policy</button>.
+                <button className="text-purple-900 underline">
+                  Terms of Use
+                </button>{" "}
+                and{" "}
+                <button className="text-purple-900 underline">
+                  Privacy Policy
+                </button>
+                .
               </p>
             </div>
             <div className="mt-8 flex justify-center">
@@ -226,6 +239,14 @@ const Register = () => {
                   Log in
                 </button>
               </p>
+            </div>
+            <div className="flex justify-center items-center mt-4">
+              <button
+                className="text-red-500 text-[14px] "
+                onClick={handleForgetPassword}
+              >
+                Forget Password?
+              </button>
             </div>
           </div>
         </div>

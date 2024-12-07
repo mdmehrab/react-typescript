@@ -7,6 +7,8 @@ import UserTable from "./components/UserTable";
 import CreateCorse from "./components/CreateCorse";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import ForgetPassword from "./pages/ForgetPassword";
+import ChangePassword from "./pages/ChangePassword";
 import { useSelector } from "react-redux";
 import { RootState } from "./features/store/store";
 
@@ -36,6 +38,8 @@ function App() {
         />
 
         <Route path="/create-course" element={<CreateCorse />} />
+        <Route path="/forget-password" element={<ForgetPassword />} />
+        <Route path="/change-password" element={<ChangePassword />} />
       </Routes>
 
       <Footer />
