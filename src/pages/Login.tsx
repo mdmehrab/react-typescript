@@ -16,10 +16,8 @@ const Login = () => {
     password: "",
   });
 
-
-
   const dispatch = useDispatch();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const handleLoginChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -28,6 +26,10 @@ const Login = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleForgetPassword = () => {
+    navigate("/forget-password");
   };
 
   const handleLoginSubmit = async (e: React.FormEvent<HTMLButtonElement>) => {
@@ -69,7 +71,7 @@ const Login = () => {
         password: "",
       });
 
-      navigate('/')
+      navigate("/");
     } catch (err) {
       toast.error("Login failed. Please check your credentials.");
       console.log(err);
@@ -160,6 +162,14 @@ const Login = () => {
           </div>
         </div>
 
+        <div className="flex justify-center items-center mt-4">
+          <button
+            className="text-red-500 text-[14px] "
+            onClick={handleForgetPassword}
+          >
+            Forget Password?
+          </button>
+        </div>
         {/* Toast Notifications */}
         <ToastContainer />
       </div>

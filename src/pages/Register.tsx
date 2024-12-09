@@ -31,9 +31,6 @@ const Register = () => {
     }
   };
 
-  const handleForgetPassword = () => {
-    navigate("/forget-password");
-  };
 
   // Cloudinary image upload function
   const uploadToCloudinary = async (file: File) => {
@@ -240,14 +237,7 @@ const Register = () => {
                 </button>
               </p>
             </div>
-            <div className="flex justify-center items-center mt-4">
-              <button
-                className="text-red-500 text-[14px] "
-                onClick={handleForgetPassword}
-              >
-                Forget Password?
-              </button>
-            </div>
+         
           </div>
         </div>
       </div>
