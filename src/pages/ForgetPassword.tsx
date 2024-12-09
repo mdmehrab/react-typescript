@@ -8,9 +8,9 @@ const ForgetPassword = () => {
   };
   return (
     <>
-      <div className="flex items-center justify-center min-h-screen bg-gray-100">
-        <div className="w-full max-w-md bg-white p-6 rounded-lg shadow-lg">
-          <h2 className="text-2xl font-bold text-center text-gray-700 mb-6">
+      <div className="flex items-center justify-center py-48 bg-gray-100">
+        <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-lg">
+          <h2 className="mb-6 text-2xl font-bold text-center text-gray-700">
             {" "}
             Reset Password
           </h2>
@@ -23,7 +23,7 @@ const ForgetPassword = () => {
                 Email{" "}
               </label>
               <input
-                className="mt-1 w-full px-4 py-2 border border-black rounded-lg focus:outline-none "
+                className="w-full px-4 py-2 mt-1 border border-black rounded-lg focus:outline-none "
                 type="email"
                 id="email"
                 required
@@ -31,24 +31,9 @@ const ForgetPassword = () => {
               />
             </div>
 
-            <div>
-              <label
-                htmlFor="phone"
-                className="block text-sm font-medium text-gray-700"
-              >
-                Phone Number
-              </label>
-              <input
-                className="mt-1 w-full px-4 py-2 border border-black rounded-lg focus:outline-none"
-                type="text"
-                id="phone"
-                placeholder="Enter your phone number"
-              />
-            </div>
-
             <button
               type="submit"
-              className="w-full bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-gray-900"
+              className="w-full px-4 py-2 text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:ring-4 focus:ring-blue-gray-900"
               onClick={handelSubmit}
             >
               {" "}
