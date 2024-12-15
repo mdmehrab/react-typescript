@@ -11,6 +11,7 @@ import ForgetPassword from "./pages/ForgetPassword";
 import ChangePassword from "./pages/ChangePassword";
 import { useSelector } from "react-redux";
 import { RootState } from "./features/store/store";
+import SetPassword from "./components/SetPassword";
 
 function App() {
   const role = useSelector((state: RootState) => state.auth.user?.roles);
@@ -40,6 +41,7 @@ function App() {
         <Route path="/create-course" element={<CreateCorse />} />
         <Route path="/forget-password" element={<ForgetPassword />} />
         <Route path="/change-password" element={<ChangePassword />} />
+        <Route path="/set-password" element={<SetPassword />} />
       </Routes>
 
       <Footer />

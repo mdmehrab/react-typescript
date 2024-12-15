@@ -80,7 +80,7 @@ const Login = () => {
 
   return (
     <>
-      <div className="w-full bg-white p-8">
+      <div className="w-full p-8 bg-white">
         <div className="flex">
           <div>
             <img
@@ -89,19 +89,19 @@ const Login = () => {
             />
           </div>
           <div className="w-full max-w-md mx-auto mt-14">
-            <div className="font-bold text-3xl ">
-              <p className="justify-center flex">Log in to your Udemy</p>
-              <p className="justify-center flex">account</p>
+            <div className="text-3xl font-bold ">
+              <p className="flex justify-center">Log in to your Udemy</p>
+              <p className="flex justify-center">account</p>
             </div>
 
-            <div className="mb-4 mt-6">
+            <div className="mt-6 mb-4">
               <input
                 placeholder="Email"
                 type="email"
                 name="email"
                 value={loginCredentials.email}
                 onChange={handleLoginChange}
-                className="w-full p-4 border border-black placeholder-black font-bold text-xs"
+                className="w-full p-4 text-xs font-bold placeholder-black border border-black"
                 required
               />
             </div>
@@ -113,63 +113,56 @@ const Login = () => {
                 name="password"
                 value={loginCredentials.password}
                 onChange={handleLoginChange}
-                className="w-full p-4 border border-black placeholder-black font-bold text-xs"
+                className="w-full p-4 text-xs font-bold placeholder-black border border-black"
                 required
               />
             </div>
 
             <button
-              className="bg-purple-500 font-bold text-white p-3 w-full"
+              className="w-full p-3 font-bold text-white bg-purple-500"
               onClick={handleLoginSubmit}
             >
               Log in
             </button>
 
-            <div className="flex justify-center mt-4 gap-1">
+            <div className="flex justify-center gap-1 mt-4">
               or
-              <button className="text-purple-900 underline font-bold underline-offset-4">
+              <button className="font-bold text-purple-900 underline underline-offset-4"          onClick={handleForgetPassword}>
                 Forgot Password?
               </button>
             </div>
 
-            <div className="mt-6 flex justify-center">
+            <div className="flex justify-center mt-6">
               <span className="text-gray-600">Other login options</span>
             </div>
 
-            <div className="flex space-x-4 mt-4 justify-center">
-              <button className="border border-black p-3 hover:bg-gray-200">
+            <div className="flex justify-center mt-4 space-x-4">
+              <button className="p-3 border border-black hover:bg-gray-200">
                 <FcGoogle size={24} />
               </button>
-              <button className="border border-black p-3 hover:bg-gray-200">
+              <button className="p-3 border border-black hover:bg-gray-200">
                 <BiLogoFacebookCircle size={24} />
               </button>
-              <button className="border border-black p-3 hover:bg-gray-200">
+              <button className="p-3 border border-black hover:bg-gray-200">
                 <FaApple size={24} />
               </button>
             </div>
 
-            <div className="bg-gray-100 mt-10 py-2">
-              <p className="flex justify-center border border-b-gray-400 py-3 ">
+            <div className="py-2 mt-10 bg-gray-100">
+              <p className="flex justify-center py-3 border border-b-gray-400 ">
                 Don't have an account?{" "}
-                <button className="text-purple-800 font-bold underline underline-offset-4">
+                <button className="font-bold text-purple-800 underline underline-offset-4">
                   Sign up
                 </button>
               </p>
-              <span className="flex justify-center mt-2 pb-2 text-purple-900 font-bold underline underline-offset-4">
+              <span className="flex justify-center pb-2 mt-2 font-bold text-purple-900 underline underline-offset-4">
                 <button>Log in with your organization</button>
               </span>
             </div>
           </div>
         </div>
 
-        <div className="flex justify-center items-center mt-4">
-          <button
-            className="text-red-500 text-[14px] "
-            onClick={handleForgetPassword}
-          >
-            Forget Password?
-          </button>
-        </div>
+      
         {/* Toast Notifications */}
         <ToastContainer />
       </div>
