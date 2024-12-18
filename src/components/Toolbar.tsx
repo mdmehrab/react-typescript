@@ -164,7 +164,7 @@ const Toolbar = (): JSX.Element => {
 
 
   // LOGOUT 
-  const handleLogout = () => {
+ const handleLogout = () => {
     // Clear cookies
     Cookies.remove("access_token");
 
